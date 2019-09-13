@@ -15,4 +15,29 @@ public class Client {
         this.address = address;
         this.postalCode = postalCode;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getSurname() {
+        return this.surname;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public int getPostalCode() {
+        return this.postalCode;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Nom: %s%sPrénom: %s%sAdresse: %s%sCode Postal: %d",
+                this.name, System.lineSeparator(),
+                this.surname, System.lineSeparator(),
+                this.address, System.lineSeparator(),
+                this.postalCode);
+    }
 }
