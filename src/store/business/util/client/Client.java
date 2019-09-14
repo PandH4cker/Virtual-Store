@@ -1,6 +1,10 @@
 package store.business.util.client;
 
+import store.business.util.logger.Logger;
+import store.business.util.logger.LoggerFactory;
+
 public class Client {
+    private final Logger logger = LoggerFactory.getLogger(Client.class.getName());
     private String name;
     private String surname;
     private String address;

@@ -1,8 +1,12 @@
 package store.business.util.product;
 
+import store.business.util.logger.Logger;
+import store.business.util.logger.LoggerFactory;
+
 import javax.swing.*;
 
 public abstract class Product {
+    private final Logger logger = LoggerFactory.getLogger(Product.class.getName());
     protected final ProductCategory productCategory;
     protected final String name;
     protected final int price;
