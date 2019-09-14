@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<products_list>
+	<product category="Jeux Vidéo">
+		<name>Call of Duty Modern Warfare</name>
+		<genre>Multi-joueurs</genre>
+		<platform>PS4</platform>
+		<price>60</price>
+		<UID>10183003108013</UID>
+		<left>100</left>
+		<image>files/images/CallOfDutyMW.jpg</image>
+	</product>
+</products_list>

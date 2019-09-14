@@ -27,12 +27,192 @@ public class VideoGame extends Product {
     }
 
     public enum VideoGameGenre {
-        ARCADE("Arcade"),
-        ADVENTURE("Aventure"),
-        ROLEPLAY("Rôle"),
-        MMO("Multi-joueurs"),
-        EDUCATIVE("Educatif"),
-        STRATEGY("Stratégie");
+        ARCADE("Arcade") {
+            @Override
+            public boolean isArcade() {
+                return true;
+            }
+
+            @Override
+            public boolean isAventure() {
+                return false;
+            }
+
+            @Override
+            public boolean isRoleplay() {
+                return false;
+            }
+
+            @Override
+            public boolean isMMO() {
+                return false;
+            }
+
+            @Override
+            public boolean isEducative() {
+                return false;
+            }
+
+            @Override
+            public boolean isStrategy() {
+                return false;
+            }
+        },
+        ADVENTURE("Aventure") {
+            @Override
+            public boolean isArcade() {
+                return false;
+            }
+
+            @Override
+            public boolean isAventure() {
+                return true;
+            }
+
+            @Override
+            public boolean isRoleplay() {
+                return false;
+            }
+
+            @Override
+            public boolean isMMO() {
+                return false;
+            }
+
+            @Override
+            public boolean isEducative() {
+                return false;
+            }
+
+            @Override
+            public boolean isStrategy() {
+                return false;
+            }
+        },
+        ROLEPLAY("Rôle") {
+            @Override
+            public boolean isArcade() {
+                return false;
+            }
+
+            @Override
+            public boolean isAventure() {
+                return false;
+            }
+
+            @Override
+            public boolean isRoleplay() {
+                return true;
+            }
+
+            @Override
+            public boolean isMMO() {
+                return false;
+            }
+
+            @Override
+            public boolean isEducative() {
+                return false;
+            }
+
+            @Override
+            public boolean isStrategy() {
+                return false;
+            }
+        },
+        MMO("Multi-joueurs") {
+            @Override
+            public boolean isArcade() {
+                return false;
+            }
+
+            @Override
+            public boolean isAventure() {
+                return false;
+            }
+
+            @Override
+            public boolean isRoleplay() {
+                return false;
+            }
+
+            @Override
+            public boolean isMMO() {
+                return true;
+            }
+
+            @Override
+            public boolean isEducative() {
+                return false;
+            }
+
+            @Override
+            public boolean isStrategy() {
+                return false;
+            }
+        },
+        EDUCATIVE("Educatif") {
+            @Override
+            public boolean isArcade() {
+                return false;
+            }
+
+            @Override
+            public boolean isAventure() {
+                return false;
+            }
+
+            @Override
+            public boolean isRoleplay() {
+                return false;
+            }
+
+            @Override
+            public boolean isMMO() {
+                return false;
+            }
+
+            @Override
+            public boolean isEducative() {
+                return true;
+            }
+
+            @Override
+            public boolean isStrategy() {
+                return false;
+            }
+        },
+        STRATEGY("Stratégie") {
+            @Override
+            public boolean isArcade() {
+                return false;
+            }
+
+            @Override
+            public boolean isAventure() {
+                return false;
+            }
+
+            @Override
+            public boolean isRoleplay() {
+                return false;
+            }
+
+            @Override
+            public boolean isMMO() {
+                return false;
+            }
+
+            @Override
+            public boolean isEducative() {
+                return false;
+            }
+
+            @Override
+            public boolean isStrategy() {
+                return true;
+            }
+        };
 
         private final String genreName;
 
@@ -44,13 +224,100 @@ public class VideoGame extends Product {
         public String toString() {
             return this.genreName;
         }
+
+        public abstract boolean isArcade();
+        public abstract boolean isAventure();
+        public abstract boolean isRoleplay();
+        public abstract boolean isMMO();
+        public abstract boolean isEducative();
+        public abstract boolean isStrategy();
     }
 
     public enum VideoGamePlatform {
-        NINTENDO("Nintendo"),
-        PC("Microsoft Windows"),
-        PLAYSTATION("PS4"),
-        XBOX("XBOX ONE X");
+        NINTENDO("Nintendo") {
+            @Override
+            public boolean isNintendo() {
+                return true;
+            }
+
+            @Override
+            public boolean isPC() {
+                return false;
+            }
+
+            @Override
+            public boolean isPlaystation() {
+                return false;
+            }
+
+            @Override
+            public boolean isXBOX() {
+                return false;
+            }
+        },
+        PC("Microsoft Windows") {
+            @Override
+            public boolean isNintendo() {
+                return false;
+            }
+
+            @Override
+            public boolean isPC() {
+                return true;
+            }
+
+            @Override
+            public boolean isPlaystation() {
+                return false;
+            }
+
+            @Override
+            public boolean isXBOX() {
+                return false;
+            }
+        },
+        PLAYSTATION("PS4") {
+            @Override
+            public boolean isNintendo() {
+                return false;
+            }
+
+            @Override
+            public boolean isPC() {
+                return false;
+            }
+
+            @Override
+            public boolean isPlaystation() {
+                return true;
+            }
+
+            @Override
+            public boolean isXBOX() {
+                return false;
+            }
+        },
+        XBOX("XBOX ONE X") {
+            @Override
+            public boolean isNintendo() {
+                return false;
+            }
+
+            @Override
+            public boolean isPC() {
+                return false;
+            }
+
+            @Override
+            public boolean isPlaystation() {
+                return false;
+            }
+
+            @Override
+            public boolean isXBOX() {
+                return true;
+            }
+        };
 
         private final String platformName;
 
@@ -62,5 +329,10 @@ public class VideoGame extends Product {
         public String toString() {
             return this.platformName;
         }
+
+        public abstract boolean isNintendo();
+        public abstract boolean isPC();
+        public abstract boolean isPlaystation();
+        public abstract boolean isXBOX();
     }
 }

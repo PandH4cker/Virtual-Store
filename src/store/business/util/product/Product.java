@@ -6,7 +6,7 @@ import store.business.util.logger.LoggerFactory;
 import javax.swing.*;
 
 public abstract class Product {
-    private final Logger logger = LoggerFactory.getLogger(Product.class.getName());
+    protected final Logger logger = LoggerFactory.getLogger(Product.class.getName());
     protected final ProductCategory productCategory;
     protected final String name;
     protected final int price;
@@ -79,9 +79,54 @@ public abstract class Product {
     }
 
     public enum ProductCategory {
-        BOOK("Livre"),
-        DVD("DVD"),
-        VIDEOGAME("Jeux Vidéo");
+        BOOK("Livre") {
+            @Override
+            public boolean isBook() {
+                return true;
+            }
+
+            @Override
+            public boolean isDVD() {
+                return false;
+            }
+
+            @Override
+            public boolean isVideoGame() {
+                return false;
+            }
+        },
+        DVD("DVD") {
+            @Override
+            public boolean isBook() {
+                return false;
+            }
+
+            @Override
+            public boolean isDVD() {
+                return true;
+            }
+
+            @Override
+            public boolean isVideoGame() {
+                return false;
+            }
+        },
+        VIDEOGAME("Jeux Vidéo") {
+            @Override
+            public boolean isBook() {
+                return false;
+            }
+
+            @Override
+            public boolean isDVD() {
+                return false;
+            }
+
+            @Override
+            public boolean isVideoGame() {
+                return true;
+            }
+        };
 
         private final String categoryName;
 
@@ -93,6 +138,10 @@ public abstract class Product {
         public String toString() {
             return this.categoryName;
         }
+
+        public abstract boolean isBook();
+        public abstract boolean isDVD();
+        public abstract boolean isVideoGame();
 
         //TODO Improve this enum class
     }

@@ -18,6 +18,7 @@ public class Client {
         this.surname = surname;
         this.address = address;
         this.postalCode = postalCode;
+        logger.log("New Client Created: " + this);
     }
 
     public String getName() {
@@ -35,6 +36,8 @@ public class Client {
     public int getPostalCode() {
         return this.postalCode;
     }
+
+
 
     @Override
     public String toString() {

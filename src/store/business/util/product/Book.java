@@ -21,6 +21,7 @@ public class Book extends Product {
         this.author = author;
         this.language = language;
         this.numberOfPages = numberOfPages;
+        this.logger.log("New Book Created: " + this);
     }
 
     public CharacterName getAuthor() {
@@ -33,6 +34,15 @@ public class Book extends Product {
 
     public LanguageBook getLanguage() {
         return this.language;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("titre: %s%sauteur: %s%slangage: %s%sN#pages: %d pages",
+                this.getName(), System.lineSeparator(),
+                this.author, System.lineSeparator(),
+                this.language, System.lineSeparator(),
+                this.numberOfPages);
     }
 
     public enum LanguageBook {

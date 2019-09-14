@@ -25,7 +25,7 @@ public class DVD extends Product {
         Collections.sort(actors);
         this.genre = genre;
         this.duration = duration;
-
+        this.logger.log("New DVD Created: " + this);
     }
 
     public ArrayList<CharacterName> getActors() {
@@ -42,10 +42,10 @@ public class DVD extends Product {
 
     @Override
     public String toString() {
-        return String.format("titre: %s%sacteurs: %s%sdurée: %d minutes%s",
+        return String.format("titre: %s%sacteurs: %s%sdurée: %d minutes",
                 this.getName(), System.lineSeparator(),
                 this.actors, System.lineSeparator(),
-                this.duration, System.lineSeparator());
+                this.duration);
     }
 
     public enum DVDGenre {
