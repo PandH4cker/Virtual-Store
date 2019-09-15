@@ -6,7 +6,7 @@ import store.business.util.logger.LoggerFactory;
 import javax.swing.*;
 
 public abstract class Product {
-    protected final Logger logger = LoggerFactory.getLogger(Product.class.getName());
+    protected final Logger logger = LoggerFactory.getLogger("Product");
     protected final ProductCategory productCategory;
     protected final String name;
     protected final int price;

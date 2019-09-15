@@ -3,6 +3,7 @@ package store.business.util.product;
 import store.business.util.product.description.CharacterName;
 
 import javax.swing.*;
+import java.nio.file.Paths;
 
 public class Book extends Product {
     private final CharacterName author;
@@ -23,6 +24,24 @@ public class Book extends Product {
         this.numberOfPages = numberOfPages;
         this.logger.log("New Book Created: " + this);
     }
+
+    public Book(final String title,
+                final String price,
+                final String uniqueID,
+                final String numberLeft,
+                final String image,
+                final String author,
+                final String language,
+                final String numberOfPages) {
+        super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Integer.parseInt(uniqueID),
+              Integer.parseInt(numberLeft), new ImageIcon(Paths.get(image).toAbsolutePath().toString()));
+        final String[] splittedAuthor = author.split(" ");
+        this.author = new CharacterName(splittedAuthor[0], splittedAuthor[1]);
+        this.language = LanguageBook.toLanguageBook(language);
+        this.numberOfPages = Integer.parseInt(numberOfPages);
+        this.logger.log("New Book Created: " + this);
+    }
+
 
     public CharacterName getAuthor() {
         return this.author;
@@ -62,5 +81,11 @@ public class Book extends Product {
         public String toString() {
             return this.languageName;
         }
+
+        public static LanguageBook toLanguageBook(String s) {
+            for(LanguageBook l : LanguageBook.values()) if(l.toString().equalsIgnoreCase(s)) return l;
+            throw new RuntimeException("Not a language known");
+        }
+
     }
 }

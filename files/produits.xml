@@ -5,7 +5,16 @@
 		<genre>Multi-joueurs</genre>
 		<platform>PS4</platform>
 		<price>60</price>
-		<UID>10183003108013</UID>
+		<UID>101830</UID>
+		<left>100</left>
+		<image>files/images/CallOfDutyMW.jpg</image>
+	</product>
+	<product category="Jeux Vidéo">
+		<name>Call of Duty Modern Warfare</name>
+		<genre>Multi-joueurs</genre>
+		<platform>PS4</platform>
+		<price>60</price>
+		<UID>101830</UID>
 		<left>100</left>
 		<image>files/images/CallOfDutyMW.jpg</image>
 	</product>

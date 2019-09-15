@@ -5,13 +5,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class ProductParser {
     private static final Path PRODUCTS_PATH = Paths.get("files/produits.xml").toAbsolutePath();
@@ -42,6 +42,10 @@ public class ProductParser {
         return this.doc.getDocumentElement();
     }
 
+    public ArrayList<Product> getProductsList() {
+        return this.productsList;
+    }
+
     private void addProducts() {
         final NodeList nodeRoot = this.root.getChildNodes();
         final int nodeRootLenght = nodeRoot.getLength();
@@ -53,9 +57,26 @@ public class ProductParser {
         for(int i = 0; i < nodeRootLenght; ++i) {
             if(nodeRoot.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 final Element product = (Element) nodeRoot.item(i);
-                final Element category = (Element) product.getElementsByTagName("category").item(0);
-                System.out.println(category.getTextContent());
-                //TODO FINISH THIS !
+                final LinkedList<String> elementsString = new LinkedList<>();
+                for(String s : productElements) elementsString.add(product.getElementsByTagName(s).item(0).getTextContent());
+                switch (product.getAttribute("category")) {
+                    case "Jeux Vidéo":
+                        for (String s : videoGameElements)
+                            elementsString.add(product.getElementsByTagName(s).item(0).getTextContent());
+                        this.productsList.add(new VideoGame(elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                              elementsString.pop(), elementsString.pop(), elementsString.pop(), elementsString.pop()));
+                        break;
+                    case "Livre":
+                        for (String s : bookElements)
+                            elementsString.add(product.getElementsByTagName(s).item(0).getTextContent());
+                        this.productsList.add(new Book(elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                              elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                              elementsString.pop(), elementsString.pop()));
+                        break;
+                    case "DVD":
+                        //TODO Finish This !!
+                        break;
+                }
             }
         }
     }

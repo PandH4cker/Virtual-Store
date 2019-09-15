@@ -7,6 +7,6 @@ public class LoggerFactory {
                                             new ConsoleLogger(),
                                             new FilteredLogger(
                                                     new FileLogger("files/log.txt"),
-                                                    message -> message.contains("simulation"))));
+                                                    message -> !message.contains("simulation"))));
     }
 }

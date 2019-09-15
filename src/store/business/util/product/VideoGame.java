@@ -1,6 +1,7 @@
 package store.business.util.product;
 
 import javax.swing.*;
+import java.nio.file.Paths;
 
 public class VideoGame extends Product {
     private final VideoGameGenre genre;
@@ -18,12 +19,33 @@ public class VideoGame extends Product {
         this.platform = platform;
     }
 
+    public VideoGame(final String title,
+                     final String price,
+                     final String uniqueID,
+                     final String numberLeft,
+                     final String image,
+                     final String genre,
+                     final String platform) {
+        super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Integer.parseInt(uniqueID),
+              Integer.parseInt(numberLeft), new ImageIcon(Paths.get(image).toAbsolutePath().toString()));
+        this.genre = VideoGameGenre.toVideoGameGenre(genre);
+        this.platform = VideoGamePlatform.toVideoGamePlatform(platform);
+        this.logger.log("New Video Game created [" + this + "]");
+    }
+
+
     public VideoGameGenre getGenre() {
         return this.genre;
     }
 
     public VideoGamePlatform getPlatform() {
         return this.platform;
+    }
+
+
+    @Override
+    public String toString() {
+        return "titre: "+this.getName()+", genre: "+this.genre+", platforme: "+this.platform;
     }
 
     public enum VideoGameGenre {
@@ -225,6 +247,11 @@ public class VideoGame extends Product {
             return this.genreName;
         }
 
+        public static VideoGameGenre toVideoGameGenre(String s) {
+            for(VideoGameGenre g : VideoGameGenre.values()) if(g.toString().equalsIgnoreCase(s)) return g;
+            throw new RuntimeException("Not a genre known");
+        }
+
         public abstract boolean isArcade();
         public abstract boolean isAventure();
         public abstract boolean isRoleplay();
@@ -328,6 +355,11 @@ public class VideoGame extends Product {
         @Override
         public String toString() {
             return this.platformName;
+        }
+
+        public static VideoGamePlatform toVideoGamePlatform(String s) {
+            for(VideoGamePlatform p : VideoGamePlatform.values()) if(p.toString().equalsIgnoreCase(s)) return p;
+            throw new RuntimeException("Not a platform known");
         }
 
         public abstract boolean isNintendo();

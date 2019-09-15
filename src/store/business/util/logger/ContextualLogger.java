@@ -11,7 +11,7 @@ public class ContextualLogger implements Logger {
 
     @Override
     public void log(String message) {
-        this.delegateLogger.log(String.format("%s %s %s",
+        this.delegateLogger.log(String.format("%s %s: %s",
                             DATE_FORMAT.format(new Date()),
                             this.callerClass,
                             message));
