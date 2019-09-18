@@ -1,12 +1,13 @@
 package store.business;
 
+import store.business.gui.Table;
 import store.business.util.product.ProductParser;
 
 import java.util.Scanner;
 
 public class VirtualStore {
     public VirtualStore() {
-        Scanner scan = new Scanner(System.in);
+        /*Scanner scan = new Scanner(System.in);
         System.out.println("===VIRTUAL STORE===");
         System.out.println("1. Print Clients List");
         System.out.println("2. Print Products List");
@@ -30,8 +31,8 @@ public class VirtualStore {
             case '5':
                 System.exit(0);
                 break;
-        }
-
+        }*/
+        Table.get();
     }
 
     public static void main(String[] args) {

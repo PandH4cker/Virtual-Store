@@ -10,4 +10,12 @@ public class Store {
         this.name = name;
         this.logo = logo;
     }
+
+    public ImageIcon getLogo() {
+        return this.logo;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }
