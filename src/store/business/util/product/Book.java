@@ -12,7 +12,7 @@ public class Book extends Product {
 
     public Book(final String title,
                 final int price,
-                final int uniqueID,
+                final long uniqueID,
                 final int numberLeft,
                 final ImageIcon image,
                 final CharacterName author,
@@ -33,7 +33,7 @@ public class Book extends Product {
                 final String author,
                 final String language,
                 final String numberOfPages) {
-        super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Integer.parseInt(uniqueID),
+        super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Long.parseLong(uniqueID),
               Integer.parseInt(numberLeft), new ImageIcon(Paths.get(image).toAbsolutePath().toString()));
         final String[] splittedAuthor = author.split(" ");
         this.author = new CharacterName(splittedAuthor[0], splittedAuthor[1]);
@@ -57,19 +57,143 @@ public class Book extends Product {
 
     @Override
     public String toString() {
-        return String.format("titre: %s%sauteur: %s%slangage: %s%sN#pages: %d pages",
-                this.getName(), System.lineSeparator(),
-                this.author, System.lineSeparator(),
-                this.language, System.lineSeparator(),
-                this.numberOfPages);
+        return "titre: "+this.getName()
+                +", auteur: " +this.author
+                +", langage: "+this.language
+                +", N#pages: "+this.numberOfPages+" pages";
     }
 
     public enum LanguageBook {
-        ENGLISH("Anglais"),
-        FRENCH("Français"),
-        DEUTSCHE("Allemand"),
-        SPANISH("Espagnol"),
-        CHINESE("Chinois");
+        ENGLISH("Anglais") {
+            @Override
+            public boolean isEnglish() {
+                return true;
+            }
+
+            @Override
+            public boolean isFrench() {
+                return false;
+            }
+
+            @Override
+            public boolean isDeutsche() {
+                return false;
+            }
+
+            @Override
+            public boolean isSpanish() {
+                return false;
+            }
+
+            @Override
+            public boolean isChinese() {
+                return false;
+            }
+        },
+        FRENCH("Français") {
+            @Override
+            public boolean isEnglish() {
+                return false;
+            }
+
+            @Override
+            public boolean isFrench() {
+                return true;
+            }
+
+            @Override
+            public boolean isDeutsche() {
+                return false;
+            }
+
+            @Override
+            public boolean isSpanish() {
+                return false;
+            }
+
+            @Override
+            public boolean isChinese() {
+                return false;
+            }
+        },
+        DEUTSCHE("Allemand") {
+            @Override
+            public boolean isEnglish() {
+                return false;
+            }
+
+            @Override
+            public boolean isFrench() {
+                return false;
+            }
+
+            @Override
+            public boolean isDeutsche() {
+                return true;
+            }
+
+            @Override
+            public boolean isSpanish() {
+                return false;
+            }
+
+            @Override
+            public boolean isChinese() {
+                return false;
+            }
+        },
+        SPANISH("Espagnol") {
+            @Override
+            public boolean isEnglish() {
+                return false;
+            }
+
+            @Override
+            public boolean isFrench() {
+                return false;
+            }
+
+            @Override
+            public boolean isDeutsche() {
+                return false;
+            }
+
+            @Override
+            public boolean isSpanish() {
+                return true;
+            }
+
+            @Override
+            public boolean isChinese() {
+                return false;
+            }
+        },
+        CHINESE("Chinois") {
+            @Override
+            public boolean isEnglish() {
+                return false;
+            }
+
+            @Override
+            public boolean isFrench() {
+                return false;
+            }
+
+            @Override
+            public boolean isDeutsche() {
+                return false;
+            }
+
+            @Override
+            public boolean isSpanish() {
+                return false;
+            }
+
+            @Override
+            public boolean isChinese() {
+                return true;
+            }
+        };
 
         private final String languageName;
 
@@ -86,6 +210,12 @@ public class Book extends Product {
             for(LanguageBook l : LanguageBook.values()) if(l.toString().equalsIgnoreCase(s)) return l;
             throw new RuntimeException("Not a language known");
         }
+
+        public abstract boolean isEnglish();
+        public abstract boolean isFrench();
+        public abstract boolean isDeutsche();
+        public abstract boolean isSpanish();
+        public abstract boolean isChinese();
 
     }
 }

@@ -9,13 +9,24 @@
 		<left>100</left>
 		<image>files/images/CallOfDutyMW.jpg</image>
 	</product>
-	<product category="Jeux Vidéo">
-		<name>Call of Duty Modern Warfare</name>
-		<genre>Multi-joueurs</genre>
-		<platform>PS4</platform>
-		<price>60</price>
-		<UID>101830</UID>
+	<product category="Livre">
+		<name>L'autoroute du millionaire : La voie express vers la richesse</name>
+		<language>Français</language>
+		<author>MJ DeMarco</author>
+		<numberOfPages>352</numberOfPages>
+		<price>25</price>
+		<UID>2849334650</UID>
 		<left>100</left>
-		<image>files/images/CallOfDutyMW.jpg</image>
+		<image>files/images/LautorouteMillionaire.jpg</image>
+	</product>
+	<product category="DVD">
+		<name>Les Animaux fantastiques : Les Crimes de Grindelwald</name>
+		<actors>Eddie Redmayne,Katherine Waterson,Dan Fogler,Jude Law,Johnny Depp</actors>
+		<genre>Fantasy</genre>
+		<duration>128</duration>
+		<price>13</price>
+		<UID>660775668448961</UID>
+		<left>100</left>
+		<image>files/images/AnimauxFantastique.jpg</image>
 	</product>
 </products_list>

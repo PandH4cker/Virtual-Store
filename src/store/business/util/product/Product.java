@@ -10,7 +10,7 @@ public abstract class Product {
     protected final ProductCategory productCategory;
     protected final String name;
     protected final int price;
-    protected final int uniqueID;
+    protected final long uniqueID;
     protected int numberLeft;
     protected final ImageIcon image;
     private final int cachedHashCode;
@@ -18,7 +18,7 @@ public abstract class Product {
     Product(final ProductCategory productCategory,
             final String name,
             final int price,
-            final int uniqueID,
+            final long uniqueID,
             final int numberLeft,
             final ImageIcon image) {
         this.productCategory = productCategory;
@@ -34,7 +34,7 @@ public abstract class Product {
         int result = this.productCategory.hashCode();
         result = 31 * result + this.name.hashCode();
         result = 31 * result + this.price;
-        result = 31 * result + this.uniqueID;
+        result = 31 * result +  Long.hashCode(this.uniqueID);
         result = 31 * result + this.numberLeft;
         result = 31 * result + this.image.hashCode();
         return result;
@@ -57,7 +57,7 @@ public abstract class Product {
         return this.image;
     }
 
-    public int getUniqueID() {
+    public long getUniqueID() {
         return this.uniqueID;
     }
 

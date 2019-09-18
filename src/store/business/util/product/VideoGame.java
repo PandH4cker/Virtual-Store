@@ -9,7 +9,7 @@ public class VideoGame extends Product {
 
     public VideoGame(final String title,
                      final int price,
-                     final int uniqueID,
+                     final long uniqueID,
                      final int numberLeft,
                      final ImageIcon image,
                      final VideoGameGenre genre,
@@ -26,7 +26,7 @@ public class VideoGame extends Product {
                      final String image,
                      final String genre,
                      final String platform) {
-        super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Integer.parseInt(uniqueID),
+        super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Long.parseLong(uniqueID),
               Integer.parseInt(numberLeft), new ImageIcon(Paths.get(image).toAbsolutePath().toString()));
         this.genre = VideoGameGenre.toVideoGameGenre(genre);
         this.platform = VideoGamePlatform.toVideoGamePlatform(platform);

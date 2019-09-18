@@ -74,7 +74,11 @@ public class ProductParser {
                                               elementsString.pop(), elementsString.pop()));
                         break;
                     case "DVD":
-                        //TODO Finish This !!
+                        for(String s : dvdElements)
+                            elementsString.add(product.getElementsByTagName(s).item(0).getTextContent());
+                        this.productsList.add(new DVD(elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                              elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                              elementsString.pop(), elementsString.pop()));
                         break;
                 }
             }
