@@ -57,10 +57,11 @@ public class Book extends Product {
 
     @Override
     public String toString() {
-        return "titre: "+this.getName()
-                +", auteur: " +this.author
-                +", langage: "+this.language
-                +", N#pages: "+this.numberOfPages+" pages";
+        return this.getName()
+                +"\n" +this.author
+                +"\n" +this.language
+                +"\n" +this.numberOfPages+" pages"
+                +"\n" +this.price+" €";
     }
 
     public enum LanguageBook {
