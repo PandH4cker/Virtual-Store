@@ -5,6 +5,7 @@ import store.business.util.product.Product;
 import javax.swing.*;
 import java.awt.*;
 
+@Deprecated
 class CurrentProductPanel extends JPanel {
     private final JTextArea productArea;
     private final JTextArea currentDescProduct;

@@ -7,6 +7,7 @@ import java.awt.*;
 
 import static javax.swing.JFrame.*;
 
+@Deprecated
 public final class Table {
     private final JFrame storeFrame;
     private final SelectCategoryPanel selectCategoryPanel;

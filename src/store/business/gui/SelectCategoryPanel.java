@@ -6,9 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.nio.file.Paths;
 
+@Deprecated
 class SelectCategoryPanel extends JPanel {
     private final Store store = new Store("Virtual Store D&DS",
-                                new ImageIcon(Paths.get("files/images/heroStore.png").toAbsolutePath().toString()));
+                                new ImageIcon(Paths.get("files/resources/image/heroStore.png").toAbsolutePath().toString()));
     private final JLabel heroStoreImage;
     private final JLabel heroStoreName;
     private final JLabel categoryList;

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2A0033;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" stylesheets="@style.css">
+               <children>
+                  <BorderPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="186.0" stylesheets="@style.css">
+                     <center>
+                        <ImageView fitHeight="124.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@image/heroStore.png" />
+                           </image>
+                           <BorderPane.margin>
+                              <Insets bottom="24.0" />
+                           </BorderPane.margin>
+                        </ImageView>
+                     </center>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                     <top>
+                        <Label stylesheets="@style.css" text="Virtual Store D&amp;DS" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets bottom="40.0" top="2.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane layoutX="305.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="268.0" stylesheets="@style.css">
+                     <center>
+                        <ComboBox prefHeight="39.0" prefWidth="268.0" promptText="Selectionez une catégorie" stylesheets="@style.css" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="30.0" />
+                           </BorderPane.margin>
+                        </ComboBox>
+                     </center>
+                     <top>
+                        <Label stylesheets="@style.css" text="Catégories produits" BorderPane.alignment="TOP_LEFT">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets top="30.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane layoutX="586.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css">
+                     <center>
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="168.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets top="20.0" />
+                           </BorderPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/active-search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </center>
+                  </BorderPane>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="800.0" stylesheets="@style.css">
+               <children>
+                  <ScrollPane fitToWidth="true" layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="200.0" stylesheets="@style.css">
+                     <content>
+                        <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Produits disponibles" stylesheets="@style.css">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                        </TextArea>
+                     </content>
+                  </ScrollPane>
+                  <BorderPane layoutX="300.0" layoutY="5.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
+                     <top>
+                        <Label stylesheets="@style.css" text="Produit courant" underline="true" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </top>
+                     <center>
+                        <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Détail du produit" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                        </TextArea>
+                     </center>
+                  </BorderPane>
+                  <ImageView fitHeight="210.0" fitWidth="271.0" layoutX="603.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/AnimauxFantastique.jpg" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D height="210.0" />
+                     </viewport>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" stylesheets="@style.css">
+               <children>
+                  <BorderPane layoutX="14.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="233.0" stylesheets="@style.css">
+                     <top>
+                        <Label stylesheets="@style.css" text="Client (nom)" BorderPane.alignment="TOP_LEFT">
+                           <BorderPane.margin>
+                              <Insets left="10.0" top="6.0" />
+                           </BorderPane.margin>
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                        </Label>
+                     </top>
+                     <center>
+                        <TextField prefHeight="41.0" prefWidth="0.0" promptText="Entrez le nom" stylesheets="@style.css" BorderPane.alignment="TOP_CENTER">
+                           <BorderPane.margin>
+                              <Insets top="2.0" />
+                           </BorderPane.margin></TextField>
+                     </center>
+                     <bottom>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="BOTTOM_LEFT">
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" />
+                           </BorderPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/active-search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                     </bottom>
+                  </BorderPane>
+                  <BorderPane layoutX="586.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css">
+                     <top>
+                        <Label stylesheets="@style.css" text="Informations client" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </Label>
+                     </top>
+                     <center>
+                        <TextArea editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="110.0" prefWidth="200.0" promptText="Détails du client" stylesheets="@style.css" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="800.0" stylesheets="@style.css">
+               <children>
+                  <BorderPane layoutX="14.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="200.0" stylesheets="@style.css">
+                     <top>
+                        <Label stylesheets="@style.css" text="Label" underline="true" BorderPane.alignment="TOP_RIGHT">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane layoutX="270.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="255.0">
+                     <center>
+                        <ComboBox prefHeight="39.0" prefWidth="253.0" promptText="Selectionez un montant" stylesheets="@style.css" BorderPane.alignment="TOP_RIGHT">
+                           <BorderPane.margin>
+                              <Insets right="4.0" top="4.0" />
+                           </BorderPane.margin>
+                        </ComboBox>
+                     </center>
+                     <top>
+                        <Label stylesheets="@style.css" text="Label" underline="true" BorderPane.alignment="TOP_RIGHT">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets right="8.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </top>
+                  </BorderPane>
+                  <BorderPane layoutX="586.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="200.0" stylesheets="@style.css">
+                     <left>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="165.0" stylesheets="@style.css" text="Acheter" BorderPane.alignment="CENTER_LEFT">
+                           <BorderPane.margin>
+                              <Insets bottom="20.0" />
+                           </BorderPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/Car-Coins-Buy.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </left>
+                  </BorderPane>
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
+      <Label layoutX="787.0" layoutY="-16.0" prefHeight="55.0" prefWidth="20.0" styleClass="closer" stylesheets="@style.css" text="X" />
+   </children>
+</AnchorPane>
