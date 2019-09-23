@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -24,10 +25,7 @@ public class App extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
-        root.setOnMousePressed(e -> {
-            this.xFrame = e.getSceneX();
-            this.yFrame = e.getSceneY();
-        });
+        root.setOnMousePressed(this::catchSceneXY);
 
         root.setOnMouseDragged(e -> {
             primaryStage.setX(e.getScreenX() - this.xFrame);
@@ -35,5 +33,10 @@ public class App extends Application {
         });
 
         primaryStage.show();
+    }
+
+    private void catchSceneXY(MouseEvent e) {
+        this.xFrame = e.getSceneX();
+        this.yFrame = e.getSceneY();
     }
 }

@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2A0033;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2A0033;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="store.business.gui.controller.VirtualStoreController">
    <children>
       <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css">
          <children>
@@ -16,7 +16,7 @@
                <children>
                   <BorderPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="186.0" stylesheets="@style.css">
                      <center>
-                        <ImageView fitHeight="124.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                        <ImageView fitHeight="120.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <image>
                               <Image url="@image/heroStore.png" />
                            </image>
@@ -41,7 +41,7 @@
                   </BorderPane>
                   <BorderPane layoutX="305.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="268.0" stylesheets="@style.css">
                      <center>
-                        <ComboBox prefHeight="39.0" prefWidth="268.0" promptText="Selectionez une catégorie" stylesheets="@style.css" BorderPane.alignment="CENTER">
+                        <ComboBox fx:id="comboBoxCategory" prefHeight="39.0" prefWidth="268.0" promptText="Selectionez une catégorie" stylesheets="@style.css" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets bottom="30.0" />
                            </BorderPane.margin>
@@ -60,7 +60,7 @@
                   </BorderPane>
                   <BorderPane layoutX="586.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css">
                      <center>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="168.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="CENTER">
+                        <Button fx:id="searchByCategoryButton" mnemonicParsing="false" prefHeight="48.0" prefWidth="168.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
@@ -83,7 +83,7 @@
                <children>
                   <ScrollPane fitToWidth="true" layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="200.0" stylesheets="@style.css">
                      <content>
-                        <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Produits disponibles" stylesheets="@style.css">
+                        <TextArea fx:id="allowedProducts" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Produits disponibles" stylesheets="@style.css">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
@@ -102,14 +102,14 @@
                         </Label>
                      </top>
                      <center>
-                        <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Détail du produit" BorderPane.alignment="CENTER">
+                        <TextArea fx:id="currentProductDescription" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Détail du produit" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
                         </TextArea>
                      </center>
                   </BorderPane>
-                  <ImageView fitHeight="210.0" fitWidth="271.0" layoutX="603.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="currentProductImage" fitHeight="210.0" fitWidth="270.0" layoutX="603.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/AnimauxFantastique.jpg" />
                      </image>
@@ -133,13 +133,13 @@
                         </Label>
                      </top>
                      <center>
-                        <TextField prefHeight="41.0" prefWidth="0.0" promptText="Entrez le nom" stylesheets="@style.css" BorderPane.alignment="TOP_CENTER">
+                        <TextField fx:id="clientNameTextField" prefHeight="41.0" prefWidth="0.0" promptText="Entrez le nom" stylesheets="@style.css" BorderPane.alignment="TOP_CENTER">
                            <BorderPane.margin>
                               <Insets top="2.0" />
                            </BorderPane.margin></TextField>
                      </center>
                      <bottom>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="BOTTOM_LEFT">
+                        <Button fx:id="searchByClientButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="BOTTOM_LEFT">
                            <BorderPane.margin>
                               <Insets bottom="10.0" />
                            </BorderPane.margin>
@@ -167,7 +167,7 @@
                         </Label>
                      </top>
                      <center>
-                        <TextArea editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="110.0" prefWidth="200.0" promptText="Détails du client" stylesheets="@style.css" BorderPane.alignment="CENTER" />
+                        <TextArea fx:id="currentClientDescription" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="110.0" prefWidth="200.0" promptText="Détails du client" stylesheets="@style.css" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -176,7 +176,7 @@
                <children>
                   <BorderPane layoutX="14.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="200.0" stylesheets="@style.css">
                      <top>
-                        <Label stylesheets="@style.css" text="Label" underline="true" BorderPane.alignment="TOP_RIGHT">
+                        <Label fx:id="currentClientNameLabel" stylesheets="@style.css" text="Nom du client courant" underline="true" BorderPane.alignment="TOP_RIGHT">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
@@ -188,14 +188,14 @@
                   </BorderPane>
                   <BorderPane layoutX="270.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="255.0">
                      <center>
-                        <ComboBox prefHeight="39.0" prefWidth="253.0" promptText="Selectionez un montant" stylesheets="@style.css" BorderPane.alignment="TOP_RIGHT">
+                        <ComboBox fx:id="comboBoxAmount" prefHeight="39.0" prefWidth="253.0" promptText="Selectionez un montant" stylesheets="@style.css" BorderPane.alignment="TOP_RIGHT">
                            <BorderPane.margin>
                               <Insets right="4.0" top="4.0" />
                            </BorderPane.margin>
                         </ComboBox>
                      </center>
                      <top>
-                        <Label stylesheets="@style.css" text="Label" underline="true" BorderPane.alignment="TOP_RIGHT">
+                        <Label fx:id="currentProductLabel" stylesheets="@style.css" text="Nom du produit courant" underline="true" BorderPane.alignment="TOP_RIGHT">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
@@ -207,7 +207,7 @@
                   </BorderPane>
                   <BorderPane layoutX="586.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="200.0" stylesheets="@style.css">
                      <left>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="165.0" stylesheets="@style.css" text="Acheter" BorderPane.alignment="CENTER_LEFT">
+                        <Button fx:id="buyButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="165.0" stylesheets="@style.css" text="Acheter" BorderPane.alignment="CENTER_LEFT">
                            <BorderPane.margin>
                               <Insets bottom="20.0" />
                            </BorderPane.margin>
@@ -225,6 +225,6 @@
             </Pane>
          </children>
       </FlowPane>
-      <Label layoutX="787.0" layoutY="-16.0" prefHeight="55.0" prefWidth="20.0" styleClass="closer" stylesheets="@style.css" text="X" />
+      <Label fx:id="closerLabel" layoutX="787.0" layoutY="-16.0" onMouseClicked="#handleCloseAction" prefHeight="55.0" prefWidth="20.0" styleClass="closer" stylesheets="@style.css" text="X" />
    </children>
 </AnchorPane>
