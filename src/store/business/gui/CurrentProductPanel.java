@@ -39,7 +39,7 @@ class CurrentProductPanel extends JPanel {
         this.currentDescProduct = new JTextArea(p.toString());
         this.currentDescProduct.setEditable(false);
 
-        this.currentProductImage = new JLabel(p.getImage());
+        this.currentProductImage = new JLabel(p.getImagePath());
 
         c.gridx = 0;
         c.gridy = 0;

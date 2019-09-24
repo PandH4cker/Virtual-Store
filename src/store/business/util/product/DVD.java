@@ -5,7 +5,6 @@ import store.business.util.product.description.CharacterName;
 import javax.swing.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class DVD extends Product {
@@ -18,7 +17,7 @@ public class DVD extends Product {
                final int price,
                final long uniqueID,
                final int numberLeft,
-               final ImageIcon image,
+               final String image,
                ArrayList<CharacterName> actors,
                final DVDGenre genre,
                final int duration) {
@@ -39,7 +38,7 @@ public class DVD extends Product {
                final String genre,
                final String duration) {
         super(ProductCategory.DVD, title, Integer.parseInt(price), Long.parseLong(uniqueID),
-              Integer.parseInt(numberLeft), new ImageIcon(Paths.get(image).toAbsolutePath().toString()));
+              Integer.parseInt(numberLeft), image);
         ArrayList<CharacterName> actorsList = new ArrayList<>();
         for(String s : actors.split(",")) {
             String[] splittedS = s.split(" ");
@@ -67,9 +66,10 @@ public class DVD extends Product {
 
     @Override
     public String toString() {
-        return "titre: "+this.getName()
-                +", acteurs: "+this.actors
-                +", durée: "+this.duration+" minutes";
+        return this.getName()
+               +"\n" +this.actors
+               +"\n" +this.duration+" minutes"
+               +"\n" +this.price+" €";
     }
 
     public enum DVDGenre {

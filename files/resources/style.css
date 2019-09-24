@@ -44,3 +44,7 @@
 .closer:hover {
     -fx-text-fill: red;
 }
+
+.text-area {
+    -fx-text-fill: black;
+}

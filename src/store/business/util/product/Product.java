@@ -3,8 +3,6 @@ package store.business.util.product;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
 
-import javax.swing.*;
-
 public abstract class Product {
     protected final Logger logger = LoggerFactory.getLogger("Product");
     protected final ProductCategory productCategory;
@@ -12,7 +10,7 @@ public abstract class Product {
     protected final int price;
     protected final long uniqueID;
     protected int numberLeft;
-    protected final ImageIcon image;
+    protected final String imagePath;
     private final int cachedHashCode;
 
     Product(final ProductCategory productCategory,
@@ -20,13 +18,13 @@ public abstract class Product {
             final int price,
             final long uniqueID,
             final int numberLeft,
-            final ImageIcon image) {
+            final String imagePath) {
         this.productCategory = productCategory;
         this.name = name;
         this.price = price;
         this.uniqueID = uniqueID;
         this.numberLeft = numberLeft;
-        this.image = image;
+        this.imagePath = imagePath;
         this.cachedHashCode = computeHashCode();
     }
 
@@ -36,7 +34,7 @@ public abstract class Product {
         result = 31 * result + this.price;
         result = 31 * result +  Long.hashCode(this.uniqueID);
         result = 31 * result + this.numberLeft;
-        result = 31 * result + this.image.hashCode();
+        result = 31 * result + this.imagePath.hashCode();
         return result;
     }
 
@@ -53,8 +51,8 @@ public abstract class Product {
         return this.name;
     }
 
-    public ImageIcon getImage() {
-        return this.image;
+    public String getImagePath() {
+        return this.imagePath;
     }
 
     public long getUniqueID() {

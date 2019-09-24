@@ -2,9 +2,6 @@ package store.business.util.product;
 
 import store.business.util.product.description.CharacterName;
 
-import javax.swing.*;
-import java.nio.file.Paths;
-
 public class Book extends Product {
     private final CharacterName author;
     private final LanguageBook language;
@@ -14,7 +11,7 @@ public class Book extends Product {
                 final int price,
                 final long uniqueID,
                 final int numberLeft,
-                final ImageIcon image,
+                final String image,
                 final CharacterName author,
                 final LanguageBook language,
                 final int numberOfPages) {
@@ -34,7 +31,7 @@ public class Book extends Product {
                 final String language,
                 final String numberOfPages) {
         super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Long.parseLong(uniqueID),
-              Integer.parseInt(numberLeft), new ImageIcon(Paths.get(image).toAbsolutePath().toString()));
+              Integer.parseInt(numberLeft), image);
         final String[] splittedAuthor = author.split(" ");
         this.author = new CharacterName(splittedAuthor[0], splittedAuthor[1]);
         this.language = LanguageBook.toLanguageBook(language);

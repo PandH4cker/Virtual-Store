@@ -7,7 +7,7 @@
 		<price>60</price>
 		<UID>101830</UID>
 		<left>100</left>
-		<image>files/images/CallOfDutyMW.jpg</image>
+		<image>files/resources/image/call-of-duty-modern-warfare-cover.jpg</image>
 	</product>
 	<product category="Livre">
 		<name>L'autoroute du millionaire : La voie express vers la richesse</name>
@@ -17,7 +17,7 @@
 		<price>25</price>
 		<UID>2849334650</UID>
 		<left>100</left>
-		<image>files/images/LautorouteMillionaire.jpg</image>
+		<image>files/resources/image/LautorouteMillionaire.jpg</image>
 	</product>
 	<product category="DVD">
 		<name>Les Animaux fantastiques : Les Crimes de Grindelwald</name>
@@ -27,6 +27,25 @@
 		<price>13</price>
 		<UID>660775668448961</UID>
 		<left>100</left>
-		<image>files/images/AnimauxFantastique.jpg</image>
+		<image>files/resources/image/AnimauxFantastique.jpg</image>
 	</product>
+	<product category="Jeux Vidéo">
+		<name>Borderlands 3</name>
+		<genre>Rôle</genre>
+		<platform>Microsoft Windows</platform>
+		<price>60</price>
+		<UID>19763194693</UID>
+		<left>100</left>
+		<image>files/resources/image/borderlands-3-cover.jpg</image>
+	</product>
+	<product category="Jeux Vidéo">
+		<name>Cyberpunk 2077</name>
+		<genre>Rôle</genre>
+		<platform>XBOX ONE X</platform>
+		<price>60</price>
+		<UID>1184658967007</UID>
+		<left>100</left>
+		<image>files/resources/image/cyberpunk-2077-cover.jpg</image>
+	</product>
+
 </products_list>

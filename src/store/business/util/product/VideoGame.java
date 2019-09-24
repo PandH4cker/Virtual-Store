@@ -11,7 +11,7 @@ public class VideoGame extends Product {
                      final int price,
                      final long uniqueID,
                      final int numberLeft,
-                     final ImageIcon image,
+                     final String image,
                      final VideoGameGenre genre,
                      final VideoGamePlatform platform) {
         super(ProductCategory.VIDEOGAME, title, price, uniqueID, numberLeft, image);
@@ -27,7 +27,7 @@ public class VideoGame extends Product {
                      final String genre,
                      final String platform) {
         super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Long.parseLong(uniqueID),
-              Integer.parseInt(numberLeft), new ImageIcon(Paths.get(image).toAbsolutePath().toString()));
+              Integer.parseInt(numberLeft), image);
         this.genre = VideoGameGenre.toVideoGameGenre(genre);
         this.platform = VideoGamePlatform.toVideoGamePlatform(platform);
         this.logger.log("New Video Game created [" + this + "]");
@@ -45,7 +45,10 @@ public class VideoGame extends Product {
 
     @Override
     public String toString() {
-        return "titre: "+this.getName()+", genre: "+this.genre+", platforme: "+this.platform;
+        return this.getName()
+                +"\n" +this.genre
+                +"\n" +this.platform
+                +"\n" +this.price+" €";
     }
 
     public enum VideoGameGenre {

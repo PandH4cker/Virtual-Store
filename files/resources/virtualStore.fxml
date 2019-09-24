@@ -60,7 +60,7 @@
                   </BorderPane>
                   <BorderPane layoutX="586.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css">
                      <center>
-                        <Button fx:id="searchByCategoryButton" mnemonicParsing="false" prefHeight="48.0" prefWidth="168.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="CENTER">
+                        <Button fx:id="searchByCategoryButton" mnemonicParsing="false" onMouseClicked="#handleSearchByCategoryAction" prefHeight="48.0" prefWidth="168.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
@@ -81,16 +81,16 @@
             </Pane>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="800.0" stylesheets="@style.css">
                <children>
-                  <ScrollPane fitToWidth="true" layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="200.0" stylesheets="@style.css">
+                  <ScrollPane fitToWidth="true" layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="233.0" stylesheets="@style.css">
                      <content>
-                        <TextArea fx:id="allowedProducts" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Produits disponibles" stylesheets="@style.css">
+                        <TextArea fx:id="allowedProducts" editable="false" onContextMenuRequested="#handleSelectedTextAction" prefHeight="200.0" prefWidth="200.0" promptText="Produits disponibles" stylesheets="@style.css">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
                         </TextArea>
                      </content>
                   </ScrollPane>
-                  <BorderPane layoutX="300.0" layoutY="5.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
+                  <BorderPane layoutX="300.0" layoutY="5.0" prefHeight="200.0" prefWidth="240.0" stylesheets="@style.css">
                      <top>
                         <Label stylesheets="@style.css" text="Produit courant" underline="true" BorderPane.alignment="CENTER">
                            <font>
