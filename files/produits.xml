@@ -29,6 +29,16 @@
 		<left>100</left>
 		<image>files/resources/image/AnimauxFantastique.jpg</image>
 	</product>
+	<product category="DVD">
+		<name>Ça</name>
+		<actors>Bill Skarsgard,Jaeden Lieberher,Finn Wolfhard,Jack Dylan Grazer,Sophia Lillis</actors>
+		<genre>Fantasy</genre>
+		<duration>128</duration>
+		<price>13</price>
+		<UID>660775668448961</UID>
+		<left>100</left>
+		<image>files/resources/image/Ça.jpg</image>
+	</product>
 	<product category="Jeux Vidéo">
 		<name>Borderlands 3</name>
 		<genre>Rôle</genre>
