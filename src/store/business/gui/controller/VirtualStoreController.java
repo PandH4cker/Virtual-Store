@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import store.business.util.parser.ProductParser;
 import store.business.util.product.*;
 
 import java.io.FileInputStream;
@@ -78,17 +79,17 @@ public class VirtualStoreController implements Initializable {
 
                  switch (selectedCategory) {
                      case "Jeux Vidéo":
-                         for(Product p : this.productParser.getProductsList())
+                         for(Product p : this.productParser.getEList())
                              if(p instanceof VideoGame)
                                  this.allowedProducts.appendText(p.getName() + '\n');
                          break;
                      case "Livre":
-                         for(Product p : this.productParser.getProductsList())
+                         for(Product p : this.productParser.getEList())
                              if(p instanceof Book)
                                  this.allowedProducts.appendText(p.getName() + '\n');
                          break;
                      case "DVD":
-                         for(Product p : this.productParser.getProductsList())
+                         for(Product p : this.productParser.getEList())
                              if(p instanceof DVD)
                                  this.allowedProducts.appendText(p.getName() + '\n');
                          break;
@@ -101,11 +102,9 @@ public class VirtualStoreController implements Initializable {
     public void handleSelectedTextAction(ContextMenuEvent event) {
         if(event.getSource() == this.allowedProducts) {
             String selectedText = this.allowedProducts.getSelectedText();
-            System.out.println(selectedText);
-            for(Product p : this.productParser.getProductsList()) System.out.println(p.getName());
             if(selectedText != null && selectedText.trim().length() != 0) {
                 Product product = null;
-                for(Product p : this.productParser.getProductsList())
+                for(Product p : this.productParser.getEList())
                     if(p.getName().trim().equals(selectedText.trim())) {
                         product = p;
                         break;
@@ -116,7 +115,6 @@ public class VirtualStoreController implements Initializable {
                     if(this.currentProductDescription.getText().trim().length() != 0)
                         this.currentProductDescription.clear();
                     this.currentProductDescription.appendText(product.toString());
-                    System.out.println(product.getImagePath());
                     try {
                         this.currentProductImage.setImage(
                                 new Image(

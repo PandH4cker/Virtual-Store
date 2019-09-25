@@ -1,9 +1,7 @@
 package store.business;
 
 import store.business.gui.Table;
-import store.business.util.product.ProductParser;
 
-import java.util.Scanner;
 @Deprecated
 public class VirtualStore {
     public VirtualStore() {

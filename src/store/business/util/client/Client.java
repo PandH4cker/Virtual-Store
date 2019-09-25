@@ -41,10 +41,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return String.format("Nom: %s%sPrénom: %s%sAdresse: %s%sCode Postal: %d",
-                this.name, System.lineSeparator(),
-                this.surname, System.lineSeparator(),
-                this.address, System.lineSeparator(),
-                this.postalCode);
+        return  this.name
+                +"\n" +this.surname
+                +"\n" +this.address
+                +"\n" +this.postalCode;
     }
 }
