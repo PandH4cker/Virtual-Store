@@ -12,6 +12,8 @@ import store.business.util.parser.ClientParser;
 import store.business.util.parser.ProductParser;
 import store.business.util.product.*;
 import store.business.util.transaction.Transaction;
+import store.business.util.writer.ClientWriter;
+import store.business.util.writer.TransactionWriter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -177,8 +179,11 @@ public class VirtualStoreController implements Initializable {
             if(this.selectedAmount > 0)
                 if(this.currentClientDescription.getText().trim().length() != 0 &&
                    this.currentProductDescription.getText().trim().length() != 0) {
-                    new Transaction(this.client.getUniqueID(), this.product.getUniqueID(),
-                                    this.selectedAmount, new Date());
+                    new TransactionWriter(
+                            new Transaction(this.client.getUniqueID(),
+                                            this.product.getUniqueID(),
+                                            this.selectedAmount,
+                                            new Date()));
                     clearFields();
                 }
         }

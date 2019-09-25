@@ -11,7 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public abstract class Writer {
+public abstract class Writer<E> {
     protected final Logger logger = LoggerFactory.getLogger("Writer");
     protected final Document doc;
     protected final Element root;
@@ -37,5 +37,5 @@ public abstract class Writer {
         return this.doc.getDocumentElement();
     }
 
-    protected abstract void writeElements();
+    protected abstract void writeElements(E e);
 }

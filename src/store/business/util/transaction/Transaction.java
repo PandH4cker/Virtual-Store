@@ -23,6 +23,22 @@ public class Transaction {
         this.logger.log("New Transaction: " + this);
     }
 
+    public long getClientUID() {
+        return this.clientUID;
+    }
+
+    public long getProductUID() {
+        return this.productUID;
+    }
+
+    public int getNumberOfProduct() {
+        return this.numberOfProduct;
+    }
+
+    public Date getTransactionDate() {
+        return this.transactionDate;
+    }
+
     @Override
     public String toString() {
         return this.transactionDate
