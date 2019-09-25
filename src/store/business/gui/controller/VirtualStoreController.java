@@ -7,13 +7,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import store.business.util.client.Client;
+import store.business.util.parser.ClientParser;
 import store.business.util.parser.ProductParser;
 import store.business.util.product.*;
+import store.business.util.transaction.Transaction;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class VirtualStoreController implements Initializable {
@@ -45,9 +49,16 @@ public class VirtualStoreController implements Initializable {
     private Label closerLabel;
 
     private final ProductParser productParser;
+    private final ClientParser clientParser;
+    private String selectedProduct;
+    private String selectedClient;
+    private int selectedAmount;
+    private Client client;
+    private Product product;
 
     public VirtualStoreController() {
         this.productParser = new ProductParser();
+        this.clientParser = new ClientParser();
     }
 
     @Override
@@ -60,6 +71,8 @@ public class VirtualStoreController implements Initializable {
         this.clientNameTextField.clear();
         this.currentClientDescription.clear();
         this.currentProductDescription.clear();
+        this.currentClientNameLabel.setText("Nom du client courant");
+        this.currentProductLabel.setText("Nom du produit courant");
     }
 
     @FXML
@@ -101,17 +114,17 @@ public class VirtualStoreController implements Initializable {
     @FXML
     public void handleSelectedTextAction(ContextMenuEvent event) {
         if(event.getSource() == this.allowedProducts) {
-            String selectedText = this.allowedProducts.getSelectedText();
-            if(selectedText != null && selectedText.trim().length() != 0) {
+             this.selectedProduct = this.allowedProducts.getSelectedText();
+            if(this.selectedProduct != null && this.selectedProduct.trim().length() != 0) {
                 Product product = null;
                 for(Product p : this.productParser.getEList())
-                    if(p.getName().trim().equals(selectedText.trim())) {
+                    if(p.getName().trim().equals(this.selectedProduct.trim())) {
                         product = p;
                         break;
                     }
-                if(product == null)
-                    throw new RuntimeException("Unknown product");
+                if(product == null) throw new RuntimeException("Unknown product");
                 else {
+                    this.product = product;
                     if(this.currentProductDescription.getText().trim().length() != 0)
                         this.currentProductDescription.clear();
                     this.currentProductDescription.appendText(product.toString());
@@ -128,6 +141,46 @@ public class VirtualStoreController implements Initializable {
                     this.currentProductLabel.setText(product.getName());
                 }
             }
+        }
+    }
+
+    @FXML
+    public void handleSearchByClientAction(MouseEvent event) {
+        if(event.getSource() == this.searchByClientButton) {
+             this.selectedClient = this.clientNameTextField.getText().trim();
+            if(this.selectedClient.length() != 0) {
+                String[] splittedClientName = this.selectedClient.split(" ");
+                Client client = null;
+                for(Client c : this.clientParser.getEList()) {
+                    if((c.getName().trim().equals(splittedClientName[0]) && c.getSurname().trim().equals(splittedClientName[1]))
+                        || (c.getName().trim().equals(splittedClientName[1]) && c.getSurname().trim().equals(splittedClientName[0]))) {
+                        client = c;
+                        break;
+                    }
+                }
+                if(client == null) throw new RuntimeException("Unknown Client");
+                else {
+                    this.client = client;
+                    if(this.currentClientDescription.getText().trim().length() != 0)
+                        this.currentClientDescription.clear();
+                    this.currentClientDescription.appendText(client.toString());
+                    this.currentClientNameLabel.setText(client.getName() + " " + client.getSurname());
+                }
+            }
+        }
+    }
+
+    @FXML
+    public void handleBuyButton(MouseEvent event) {
+        if(event.getSource() == this.buyButton) {
+            this.selectedAmount = this.comboBoxAmount.getSelectionModel().getSelectedItem();
+            if(this.selectedAmount > 0)
+                if(this.currentClientDescription.getText().trim().length() != 0 &&
+                   this.currentProductDescription.getText().trim().length() != 0) {
+                    new Transaction(this.client.getUniqueID(), this.product.getUniqueID(),
+                                    this.selectedAmount, new Date());
+                    clearFields();
+                }
         }
     }
 }

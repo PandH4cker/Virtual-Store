@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <clients_list>
-
+	<client>
+		<name>Dray</name>
+		<surname>Raphael</surname>
+		<address>19, Boulevard Edouard Branly, Sarcelles</address>
+		<postalCode>95200</postalCode>
+		<UID>156581881389</UID>
+	</client>
 </clients_list>

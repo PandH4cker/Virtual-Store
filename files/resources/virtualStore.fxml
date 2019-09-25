@@ -139,7 +139,7 @@
                            </BorderPane.margin></TextField>
                      </center>
                      <bottom>
-                        <Button fx:id="searchByClientButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="182.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="BOTTOM_LEFT">
+                        <Button fx:id="searchByClientButton" mnemonicParsing="false" onMouseClicked="#handleSearchByClientAction" prefHeight="39.0" prefWidth="182.0" stylesheets="@style.css" text="Chercher" BorderPane.alignment="BOTTOM_LEFT">
                            <BorderPane.margin>
                               <Insets bottom="10.0" />
                            </BorderPane.margin>
@@ -152,7 +152,7 @@
                            </graphic></Button>
                      </bottom>
                   </BorderPane>
-                  <BorderPane layoutX="586.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css">
+                  <BorderPane layoutX="546.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="240.0" stylesheets="@style.css">
                      <top>
                         <Label stylesheets="@style.css" text="Informations client" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
@@ -207,7 +207,7 @@
                   </BorderPane>
                   <BorderPane layoutX="586.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="200.0" stylesheets="@style.css">
                      <left>
-                        <Button fx:id="buyButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="165.0" stylesheets="@style.css" text="Acheter" BorderPane.alignment="CENTER_LEFT">
+                        <Button fx:id="buyButton" mnemonicParsing="false" onMouseClicked="#handleBuyButton" prefHeight="39.0" prefWidth="165.0" stylesheets="@style.css" text="Acheter" BorderPane.alignment="CENTER_LEFT">
                            <BorderPane.margin>
                               <Insets bottom="20.0" />
                            </BorderPane.margin>

@@ -1,4 +1,4 @@
-package store.business.util.parser;
+package store.business.util.writer;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -10,18 +10,15 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
 
-public abstract class Parser<E> {
-    protected final Logger logger = LoggerFactory.getLogger("Parser");
-    protected final ArrayList<E> eList;
+public abstract class Writer {
+    protected final Logger logger = LoggerFactory.getLogger("Writer");
     protected final Document doc;
     protected final Element root;
     private final Path E_PATH;
 
-    protected Parser(final Path E_PATH) {
+    protected Writer(final Path E_PATH) {
         this.E_PATH = E_PATH;
-        this.eList = new ArrayList<>();
         this.doc = createDocument();
         this.root = getRootElement();
     }
@@ -40,9 +37,5 @@ public abstract class Parser<E> {
         return this.doc.getDocumentElement();
     }
 
-    public ArrayList<E> getEList() {
-        return this.eList;
-    }
-
-    protected abstract void addEElements();
+    protected abstract void writeElements();
 }

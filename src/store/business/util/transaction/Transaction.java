@@ -1,20 +1,33 @@
 package store.business.util.transaction;
 
+import store.business.util.logger.Logger;
+import store.business.util.logger.LoggerFactory;
+
 import java.util.Date;
 
 public class Transaction {
-    private final int clientUID;
-    private final int productUID;
+    private final Logger logger = LoggerFactory.getLogger("Transaction");
+    private final long clientUID;
+    private final long productUID;
     private final int numberOfProduct;
     private final Date transactionDate;
 
-    public Transaction(final int clientUID,
-                       final int productUID,
+    public Transaction(final long clientUID,
+                       final long productUID,
                        final int numberOfProduct,
                        final Date transactionDate) {
         this.clientUID = clientUID;
         this.productUID = productUID;
         this.numberOfProduct = numberOfProduct;
         this.transactionDate = transactionDate;
+        this.logger.log("New Transaction: " + this);
+    }
+
+    @Override
+    public String toString() {
+        return this.transactionDate
+               +"\n UID Product: " +this.productUID
+               +"\n UID Client: " +this.clientUID
+               +"\n Amount: " +this.numberOfProduct;
     }
 }

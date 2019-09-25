@@ -3,7 +3,6 @@ package store.business.util.parser;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import store.business.util.parser.Parser;
 import store.business.util.product.Book;
 import store.business.util.product.DVD;
 import store.business.util.product.Product;
@@ -19,6 +18,7 @@ public class ProductParser extends Parser<Product> {
     public ProductParser() {
         super(PRODUCTS_PATH);
         addEElements();
+        this.logger.log("Product Parsed");
     }
 
     @Override
