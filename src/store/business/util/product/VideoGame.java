@@ -1,8 +1,5 @@
 package store.business.util.product;
 
-import javax.swing.*;
-import java.nio.file.Paths;
-
 public class VideoGame extends Product {
     private final VideoGameGenre genre;
     private final VideoGamePlatform platform;
@@ -48,7 +45,8 @@ public class VideoGame extends Product {
         return this.getName()
                 +"\n" +this.genre
                 +"\n" +this.platform
-                +"\n" +this.price+" €";
+                +"\n" +this.price+" €"
+                +"\n" +this.numberLeft+" restants";
     }
 
     public enum VideoGameGenre {

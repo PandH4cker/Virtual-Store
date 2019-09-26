@@ -65,7 +65,9 @@ public class VirtualStoreController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.comboBoxCategory.getItems().addAll("Jeux Vidéo", "Livre", "DVD");
+        this.comboBoxCategory.getItems().add("Tous");
+        for(String s : this.productParser.getAttributes())
+            this.comboBoxCategory.getItems().add(s);
         this.comboBoxAmount.getItems().addAll(1, 2, 3, 4, 5);
     }
 
@@ -93,6 +95,10 @@ public class VirtualStoreController implements Initializable {
                      this.allowedProducts.clear();
 
                  switch (selectedCategory) {
+                     case "Tous":
+                         for(Product p : this.productParser.getEList())
+                             this.allowedProducts.appendText(p.getName() + '\n');
+                         break;
                      case "Jeux Vidéo":
                          for(Product p : this.productParser.getEList())
                              if(p instanceof VideoGame)

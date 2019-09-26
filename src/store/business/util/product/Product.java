@@ -3,7 +3,7 @@ package store.business.util.product;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
 
-public abstract class Product {
+public abstract class Product implements Comparable<Product>{
     protected final Logger logger = LoggerFactory.getLogger("Product");
     protected final ProductCategory productCategory;
     protected final String name;
@@ -45,6 +45,11 @@ public abstract class Product {
 
         final Product otherProduct = (Product) other;
         return this.uniqueID == otherProduct.getUniqueID();
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        return Integer.compare(this.price, other.price);
     }
 
     public String getName() {

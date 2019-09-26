@@ -2,8 +2,6 @@ package store.business.util.product;
 
 import store.business.util.product.description.CharacterName;
 
-import javax.swing.*;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -69,7 +67,8 @@ public class DVD extends Product {
         return this.getName()
                +"\n" +this.actors
                +"\n" +this.duration+" minutes"
-               +"\n" +this.price+" €";
+               +"\n" +this.price+" €"
+               +"\n" +this.numberLeft+" restants";
     }
 
     public enum DVDGenre {

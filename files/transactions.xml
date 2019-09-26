@@ -1,9 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<transactions_list>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><transactions_list>
 	<transaction>
 		<clientUID>156581881389</clientUID>
 		<productUID>19763194693</productUID>
 		<amount>1</amount>
 		<date>Wed Sep 25 23:45:15 CEST 2019</date>
+	</transaction>
+	<transaction>
+		<clientUID>156581881389</clientUID>
+		<productUID>19763194693</productUID>
+		<amount>2</amount>
+		<date>Thu Sep 26 08:36:53 CEST 2019</date>
 	</transaction>
 </transactions_list>

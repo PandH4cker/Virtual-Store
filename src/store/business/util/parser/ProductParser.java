@@ -10,15 +10,23 @@ import store.business.util.product.VideoGame;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class ProductParser extends Parser<Product> {
     private static final Path PRODUCTS_PATH = Paths.get("files/produits.xml").toAbsolutePath();
+    private LinkedList<String> attributes;
 
     public ProductParser() {
         super(PRODUCTS_PATH);
+        this.attributes = new LinkedList<>();
         addEElements();
+        Collections.sort(this.eList);
         this.logger.log("Product Parsed");
+    }
+
+    public LinkedList<String> getAttributes() {
+        return this.attributes;
     }
 
     @Override
@@ -35,6 +43,8 @@ public class ProductParser extends Parser<Product> {
                 final Element product = (Element) nodeRoot.item(i);
                 final LinkedList<String> elementsString = new LinkedList<>();
                 for(String s : productElements) elementsString.add(product.getElementsByTagName(s).item(0).getTextContent());
+                if(!this.attributes.contains(product.getAttribute("category")))
+                    this.attributes.add(product.getAttribute("category"));
                 switch (product.getAttribute("category")) {
                     case "Jeux Vidéo":
                         for (String s : videoGameElements)

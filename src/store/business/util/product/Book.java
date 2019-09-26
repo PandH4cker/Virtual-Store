@@ -58,7 +58,8 @@ public class Book extends Product {
                 +"\n" +this.author
                 +"\n" +this.language
                 +"\n" +this.numberOfPages+" pages"
-                +"\n" +this.price+" €";
+                +"\n" +this.price+" €"
+                +"\n" +this.numberLeft+" restants";
     }
 
     public enum LanguageBook {
