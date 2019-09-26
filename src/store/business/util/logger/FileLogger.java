@@ -1,5 +1,7 @@
 package store.business.util.logger;
 
+import store.business.util.logger.level.Level;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,9 +17,9 @@ public class FileLogger implements Logger {
     }
 
     @Override
-    public void log(String message) {
+    public void log(String message, Level level) {
         try {
-            Files.write(this.path, (message + "\n").getBytes(), APPEND, CREATE);
+            Files.write(this.path, (level.toString() + ": " + message + "\n").getBytes(), APPEND, CREATE);
         } catch (IOException e) {
             throw new RuntimeException("Cannot write log message to file [" + this.path + "]", e);
         }

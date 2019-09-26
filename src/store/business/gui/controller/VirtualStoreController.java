@@ -8,11 +8,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import store.business.util.client.Client;
+import store.business.util.logger.level.Level;
+import store.business.util.logger.Logger;
+import store.business.util.logger.LoggerFactory;
 import store.business.util.parser.ClientParser;
 import store.business.util.parser.ProductParser;
 import store.business.util.product.*;
+import store.business.util.product.exception.NoMoreOfThisProductException;
 import store.business.util.transaction.Transaction;
-import store.business.util.writer.ClientWriter;
 import store.business.util.writer.TransactionWriter;
 
 import java.io.FileInputStream;
@@ -50,6 +53,7 @@ public class VirtualStoreController implements Initializable {
     @FXML
     private Label closerLabel;
 
+    private final Logger logger = LoggerFactory.getLogger("VirtualStoreController");
     private final ProductParser productParser;
     private final ClientParser clientParser;
     private String selectedProduct;
@@ -68,7 +72,8 @@ public class VirtualStoreController implements Initializable {
         this.comboBoxCategory.getItems().add("Tous");
         for(String s : this.productParser.getAttributes())
             this.comboBoxCategory.getItems().add(s);
-        this.comboBoxAmount.getItems().addAll(1, 2, 3, 4, 5);
+        this.comboBoxAmount.getItems().addAll(1, 2, 4, 8, 10, 20, 40, 50, 100);
+        this.logger.log("Controller Initialized", Level.INFO);
     }
 
     private void clearFields() {
@@ -81,6 +86,7 @@ public class VirtualStoreController implements Initializable {
 
     @FXML
     public void handleCloseAction(MouseEvent event) {
+        this.logger.log("Close Action Event", Level.INFO);
         if(event.getSource() == this.closerLabel)
             System.exit(0);
     }
@@ -88,6 +94,7 @@ public class VirtualStoreController implements Initializable {
 
     @FXML
     public void handleSearchByCategoryAction(MouseEvent event) {
+        this.logger.log("Search By Category Event", Level.INFO);
         if(event.getSource() == this.searchByCategoryButton) {
              String selectedCategory = this.comboBoxCategory.getSelectionModel().getSelectedItem();
              if(selectedCategory != null) {
@@ -121,6 +128,7 @@ public class VirtualStoreController implements Initializable {
 
     @FXML
     public void handleSelectedTextAction(ContextMenuEvent event) {
+        this.logger.log("Selected Text Event", Level.INFO);
         if(event.getSource() == this.allowedProducts) {
              this.selectedProduct = this.allowedProducts.getSelectedText();
             if(this.selectedProduct != null && this.selectedProduct.trim().length() != 0) {
@@ -144,7 +152,7 @@ public class VirtualStoreController implements Initializable {
                                                 .toAbsolutePath()
                                                 .toString())));
                     } catch (FileNotFoundException e) {
-                        e.printStackTrace();
+                        this.logger.log(e.getMessage(), Level.ERROR);
                     }
                     this.currentProductLabel.setText(product.getName());
                 }
@@ -154,6 +162,7 @@ public class VirtualStoreController implements Initializable {
 
     @FXML
     public void handleSearchByClientAction(MouseEvent event) {
+        this.logger.log("Search By Client Event", Level.INFO);
         if(event.getSource() == this.searchByClientButton) {
              this.selectedClient = this.clientNameTextField.getText().trim();
             if(this.selectedClient.length() != 0) {
@@ -166,6 +175,7 @@ public class VirtualStoreController implements Initializable {
                         break;
                     }
                 }
+                //TODO Instantiate ClientWriter here
                 if(client == null) throw new RuntimeException("Unknown Client");
                 else {
                     this.client = client;
@@ -180,16 +190,22 @@ public class VirtualStoreController implements Initializable {
 
     @FXML
     public void handleBuyButton(MouseEvent event) {
+        this.logger.log("Buy Button Event", Level.INFO);
         if(event.getSource() == this.buyButton) {
             this.selectedAmount = this.comboBoxAmount.getSelectionModel().getSelectedItem();
             if(this.selectedAmount > 0)
                 if(this.currentClientDescription.getText().trim().length() != 0 &&
                    this.currentProductDescription.getText().trim().length() != 0) {
-                    new TransactionWriter(
-                            new Transaction(this.client.getUniqueID(),
-                                            this.product.getUniqueID(),
-                                            this.selectedAmount,
-                                            new Date()));
+                    try {
+                        this.product.tookProduct(this.selectedAmount);
+                        new TransactionWriter(
+                                new Transaction(this.client.getUniqueID(),
+                                                this.product.getUniqueID(),
+                                                this.selectedAmount,
+                                                new Date()));
+                    } catch (NoMoreOfThisProductException e) {
+                        this.logger.log(e.getMessage(), Level.WARNING);
+                    }
                     clearFields();
                 }
         }

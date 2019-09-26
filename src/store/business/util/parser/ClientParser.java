@@ -4,6 +4,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import store.business.util.client.Client;
+import store.business.util.logger.level.Level;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +16,7 @@ public class ClientParser extends Parser<Client> {
     public ClientParser() {
         super(CLIENTS_PATH);
         addEElements();
-        this.logger.log("Clients Parsed");
+        this.logger.log("Clients Parsed", Level.INFO);
     }
 
     @Override

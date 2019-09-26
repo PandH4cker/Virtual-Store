@@ -1,5 +1,6 @@
 package store.business.util.product;
 
+import store.business.util.logger.level.Level;
 import store.business.util.product.description.CharacterName;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class DVD extends Product {
         Collections.sort(this.actors);
         this.genre = genre;
         this.duration = duration;
-        this.logger.log("New DVD Created: " + this);
+        this.logger.log("New DVD Created [" + this + "]", Level.INFO);
     }
 
     public DVD(final String title,
@@ -46,7 +47,7 @@ public class DVD extends Product {
         Collections.sort(this.actors);
         this.genre = DVDGenre.toDVDGenre(genre);
         this.duration = Integer.parseInt(duration);
-        this.logger.log("New DVD Created: " + this);
+        this.logger.log("New DVD Created [" + this + "]", Level.INFO);
     }
 
 

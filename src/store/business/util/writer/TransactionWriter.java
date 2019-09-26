@@ -1,6 +1,7 @@
 package store.business.util.writer;
 
 import org.w3c.dom.Element;
+import store.business.util.logger.level.Level;
 import store.business.util.transaction.Transaction;
 
 import javax.xml.transform.Transformer;
@@ -16,6 +17,7 @@ public class TransactionWriter extends Writer<Transaction> {
     public TransactionWriter(final Transaction transaction) {
         super(TRANSACTION_PATH);
         writeElements(transaction);
+        this.logger.log("New Transaction Written", Level.INFO);
     }
 
     @Override
@@ -35,7 +37,7 @@ public class TransactionWriter extends Writer<Transaction> {
         newTransaction.appendChild(amount);
 
         Element date = this.doc.createElement("date");
-        date.appendChild(this.doc.createTextNode(t.getTransactionDate().toString()));
+        date.appendChild(this.doc.createTextNode(t.getTransactionDate()));
         newTransaction.appendChild(date);
 
         this.root.appendChild(newTransaction);
@@ -48,7 +50,7 @@ public class TransactionWriter extends Writer<Transaction> {
             StreamResult result = new StreamResult(TRANSACTION_PATH.toString());
             transformer.transform(source, result);
         } catch (TransformerException e) {
-            e.printStackTrace();
+            this.logger.log(e.getMessage(), Level.ERROR);
         }
     }
 }

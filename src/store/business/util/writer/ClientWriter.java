@@ -2,6 +2,7 @@ package store.business.util.writer;
 
 import org.w3c.dom.Element;
 import store.business.util.client.Client;
+import store.business.util.logger.level.Level;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -16,6 +17,7 @@ public class ClientWriter extends Writer<Client> {
     public ClientWriter(final Client client) {
         super(CLIENTS_PATH);
         writeElements(client);
+        this.logger.log("New Client Written", Level.INFO);
     }
     @Override
     protected void writeElements(Client c) {
@@ -51,7 +53,7 @@ public class ClientWriter extends Writer<Client> {
             StreamResult result = new StreamResult(CLIENTS_PATH.toString());
             transformer.transform(source, result);
         } catch (TransformerException e) {
-            e.printStackTrace();
+            this.logger.log(e.getMessage(), Level.ERROR);
         }
     }
 }

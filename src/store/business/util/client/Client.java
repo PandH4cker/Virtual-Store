@@ -1,10 +1,11 @@
 package store.business.util.client;
 
+import store.business.util.logger.level.Level;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
 
 public class Client {
-    private final Logger logger = LoggerFactory.getLogger(Client.class.getName());
+    private final Logger logger = LoggerFactory.getLogger("Client");
     private final String name;
     private final String surname;
     private final String address;
@@ -21,7 +22,7 @@ public class Client {
         this.address = address;
         this.postalCode = postalCode;
         this.uniqueID = uniqueID;
-        logger.log("New Client Created: " + this);
+        logger.log("New Client Created [" + this + "]", Level.INFO);
     }
 
     public String getName() {

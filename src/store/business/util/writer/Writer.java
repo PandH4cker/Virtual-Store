@@ -3,6 +3,7 @@ package store.business.util.writer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
+import store.business.util.logger.level.Level;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
 
@@ -28,8 +29,9 @@ public abstract class Writer<E> {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             return factory.newDocumentBuilder().parse(E_PATH.toFile());
         } catch (final ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace();
+            this.logger.log(e.getMessage(), Level.ERROR);
         }
+        this.logger.log("Cannot read the document: " + E_PATH, Level.WARNING);
         throw new RuntimeException("Cannot read the document: " + E_PATH);
     }
 

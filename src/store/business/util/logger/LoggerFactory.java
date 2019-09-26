@@ -1,5 +1,7 @@
 package store.business.util.logger;
 
+import store.business.util.logger.level.Level;
+
 public class LoggerFactory {
     public static Logger getLogger(String name) {
         return new ContextualLogger(name,
@@ -7,6 +9,7 @@ public class LoggerFactory {
                                             new ConsoleLogger(),
                                             new FilteredLogger(
                                                     new FileLogger("files/log.txt"),
-                                                    message -> !message.contains("simulation"))));
+                                                    level -> level == Level.ERROR
+                                                             || level == Level.WARNING)));
     }
 }

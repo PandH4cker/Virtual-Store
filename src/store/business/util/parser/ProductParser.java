@@ -3,6 +3,7 @@ package store.business.util.parser;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import store.business.util.logger.level.Level;
 import store.business.util.product.Book;
 import store.business.util.product.DVD;
 import store.business.util.product.Product;
@@ -22,7 +23,7 @@ public class ProductParser extends Parser<Product> {
         this.attributes = new LinkedList<>();
         addEElements();
         Collections.sort(this.eList);
-        this.logger.log("Product Parsed");
+        this.logger.log("Product Parsed", Level.INFO);
     }
 
     public LinkedList<String> getAttributes() {

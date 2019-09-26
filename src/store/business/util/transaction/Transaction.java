@@ -1,8 +1,10 @@
 package store.business.util.transaction;
 
+import store.business.util.logger.level.Level;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Transaction {
@@ -12,6 +14,8 @@ public class Transaction {
     private final int numberOfProduct;
     private final Date transactionDate;
 
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+
     public Transaction(final long clientUID,
                        final long productUID,
                        final int numberOfProduct,
@@ -20,7 +24,7 @@ public class Transaction {
         this.productUID = productUID;
         this.numberOfProduct = numberOfProduct;
         this.transactionDate = transactionDate;
-        this.logger.log("New Transaction: " + this);
+        this.logger.log("New Transaction [" + this + "]", Level.INFO);
     }
 
     public long getClientUID() {
@@ -35,13 +39,13 @@ public class Transaction {
         return this.numberOfProduct;
     }
 
-    public Date getTransactionDate() {
-        return this.transactionDate;
+    public String getTransactionDate() {
+        return DATE_FORMAT.format(this.transactionDate);
     }
 
     @Override
     public String toString() {
-        return this.transactionDate
+        return DATE_FORMAT.format(this.transactionDate)
                +"\n UID Product: " +this.productUID
                +"\n UID Client: " +this.clientUID
                +"\n Amount: " +this.numberOfProduct;

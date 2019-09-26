@@ -29,7 +29,7 @@
                         <Insets bottom="20.0" />
                      </padding>
                      <top>
-                        <Label stylesheets="@style.css" text="Virtual Store D&amp;DS" BorderPane.alignment="CENTER">
+                        <Label stylesheets="@style.css" text="Virtual Store D&amp;DS" underline="true" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
@@ -48,7 +48,7 @@
                         </ComboBox>
                      </center>
                      <top>
-                        <Label stylesheets="@style.css" text="Catégories produits" BorderPane.alignment="TOP_LEFT">
+                        <Label stylesheets="@style.css" text="Catégories produits" underline="true" BorderPane.alignment="TOP_LEFT">
                            <font>
                               <Font name="AR ESSENCE" size="18.0" />
                            </font>
@@ -81,7 +81,7 @@
             </Pane>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="800.0" stylesheets="@style.css">
                <children>
-                  <ScrollPane fitToWidth="true" layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="233.0" stylesheets="@style.css">
+                  <ScrollPane fitToWidth="true" layoutX="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="255.0" stylesheets="@style.css">
                      <content>
                         <TextArea fx:id="allowedProducts" editable="false" onContextMenuRequested="#handleSelectedTextAction" prefHeight="200.0" prefWidth="200.0" promptText="Produits disponibles" stylesheets="@style.css">
                            <font>
@@ -123,7 +123,7 @@
                <children>
                   <BorderPane layoutX="14.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="233.0" stylesheets="@style.css">
                      <top>
-                        <Label stylesheets="@style.css" text="Client (nom)" BorderPane.alignment="TOP_LEFT">
+                        <Label stylesheets="@style.css" text="Client (nom)" underline="true" BorderPane.alignment="TOP_LEFT">
                            <BorderPane.margin>
                               <Insets left="10.0" top="6.0" />
                            </BorderPane.margin>
@@ -154,7 +154,7 @@
                   </BorderPane>
                   <BorderPane layoutX="546.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" prefWidth="240.0" stylesheets="@style.css">
                      <top>
-                        <Label stylesheets="@style.css" text="Informations client" BorderPane.alignment="CENTER">
+                        <Label stylesheets="@style.css" text="Informations client" underline="true" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets />
                            </BorderPane.margin>

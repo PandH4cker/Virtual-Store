@@ -1,5 +1,7 @@
 package store.business.util.product;
 
+import store.business.util.logger.level.Level;
+
 public class VideoGame extends Product {
     private final VideoGameGenre genre;
     private final VideoGamePlatform platform;
@@ -14,6 +16,7 @@ public class VideoGame extends Product {
         super(ProductCategory.VIDEOGAME, title, price, uniqueID, numberLeft, image);
         this.genre = genre;
         this.platform = platform;
+        this.logger.log("New Video Game Created [" + this + "]", Level.INFO);
     }
 
     public VideoGame(final String title,
@@ -27,7 +30,7 @@ public class VideoGame extends Product {
               Integer.parseInt(numberLeft), image);
         this.genre = VideoGameGenre.toVideoGameGenre(genre);
         this.platform = VideoGamePlatform.toVideoGamePlatform(platform);
-        this.logger.log("New Video Game created [" + this + "]");
+        this.logger.log("New Video Game created [" + this + "]", Level.INFO);
     }
 
 

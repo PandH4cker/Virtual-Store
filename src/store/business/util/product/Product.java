@@ -2,6 +2,7 @@ package store.business.util.product;
 
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
+import store.business.util.product.exception.NoMoreOfThisProductException;
 
 public abstract class Product implements Comparable<Product>{
     protected final Logger logger = LoggerFactory.getLogger("Product");
@@ -81,6 +82,12 @@ public abstract class Product implements Comparable<Product>{
         return this.productCategory;
     }
 
+    public void tookProduct(final int amount) throws NoMoreOfThisProductException {
+        if(this.numberLeft - amount >= 0)
+            this.numberLeft -= amount;
+        else throw new NoMoreOfThisProductException("No More Of This Product [" + this + "]");
+    }
+
     public enum ProductCategory {
         BOOK("Livre") {
             @Override
@@ -146,6 +153,5 @@ public abstract class Product implements Comparable<Product>{
         public abstract boolean isDVD();
         public abstract boolean isVideoGame();
 
-        //TODO Improve this enum class
     }
 }

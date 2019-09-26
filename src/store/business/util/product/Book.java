@@ -1,5 +1,6 @@
 package store.business.util.product;
 
+import store.business.util.logger.level.Level;
 import store.business.util.product.description.CharacterName;
 
 public class Book extends Product {
@@ -19,7 +20,7 @@ public class Book extends Product {
         this.author = author;
         this.language = language;
         this.numberOfPages = numberOfPages;
-        this.logger.log("New Book Created: " + this);
+        this.logger.log("New Book Created [" + this + "]", Level.INFO);
     }
 
     public Book(final String title,
@@ -36,7 +37,7 @@ public class Book extends Product {
         this.author = new CharacterName(splittedAuthor[0], splittedAuthor[1]);
         this.language = LanguageBook.toLanguageBook(language);
         this.numberOfPages = Integer.parseInt(numberOfPages);
-        this.logger.log("New Book Created: " + this);
+        this.logger.log("New Book Created [" + this + "]", Level.INFO);
     }
 
 
