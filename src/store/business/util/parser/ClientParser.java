@@ -10,15 +10,38 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 
+/**
+ * <h1>The client parser</h1>
+ * <p>
+ *     Parse the clients into a list of client
+ *     It inherits of the {@code public abstract class Parser<E>} generic class
+ * </p>
+ * @author Raphael Dray
+ * @version 1.0.0
+ * @since 1.0.0
+ * @see Parser<Client>
+ * @see Client
+ * @see Path
+ */
 public class ClientParser extends Parser<Client> {
+    /**
+     * {@value "files/clients.xml"}
+     */
     private static final Path CLIENTS_PATH = Paths.get("files/clients.xml").toAbsolutePath();
 
+    /**
+     * Inherits the constructor of the {@code public abstract class Parser<E>} class
+     * Add elements to the list
+     */
     public ClientParser() {
         super(CLIENTS_PATH);
         addEElements();
         this.logger.log("Clients Parsed", Level.INFO);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void addEElements() {
         final NodeList nodeRoot = this.getRootElement().getChildNodes();

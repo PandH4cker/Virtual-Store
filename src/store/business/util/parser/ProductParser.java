@@ -14,10 +14,32 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.LinkedList;
 
+/**
+ * <h1>The product parser</h1>
+ * <p>
+ *     Parse the products into a list of product
+ *     It inherits of the {@code public abstract class Parser<E>} generic class
+ * </p>
+ * @author Raphael Dray
+ * @version 1.0.0
+ * @since 1.0.0
+ * @see Parser<Product>
+ * @see Product
+ * @see Path
+ */
 public class ProductParser extends Parser<Product> {
+    /**
+     * {@value "files/produits.xml"}
+     */
     private static final Path PRODUCTS_PATH = Paths.get("files/produits.xml").toAbsolutePath();
     private LinkedList<String> attributes;
 
+    /**
+     * Inherits the constructor of the {@code public abstract class Parser<E>} class
+     * Add elements to the list
+     * Sort by price
+     * @see Collections
+     */
     public ProductParser() {
         super(PRODUCTS_PATH);
         this.attributes = new LinkedList<>();
@@ -26,10 +48,17 @@ public class ProductParser extends Parser<Product> {
         this.logger.log("Product Parsed", Level.INFO);
     }
 
+    /**
+     * Getter of the attributes
+     * @return LinkedList<String> The attributes present in the XML file
+     */
     public LinkedList<String> getAttributes() {
         return this.attributes;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void addEElements() {
         final NodeList nodeRoot = this.getRootElement().getChildNodes();

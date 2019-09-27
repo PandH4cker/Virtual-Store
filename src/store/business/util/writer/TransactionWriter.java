@@ -12,14 +12,50 @@ import javax.xml.transform.stream.StreamResult;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * <h1>The transaction writer object</h1>
+ * <p>
+ *     The transaction writer is an object that
+ *     write a transaction into a XML file.
+ *     It inherits of the {@code public abstract class Write<E>} class
+ * </p>
+ * @author Raphael Dray
+ * @version 1.0.0
+ * @since 1.0.0
+ * @see Writer<Transaction>
+ * @see Transaction
+ * @see Path
+ */
 public class TransactionWriter extends Writer<Transaction> {
+
+    /**
+     * {@value "files/transactions.xml"}
+     */
     private static final Path TRANSACTION_PATH = Paths.get("files/transactions.xml");
+
+    /**
+     * Write the transaction into the XML file
+     * @param transaction Transaction The transaction to write
+     */
     public TransactionWriter(final Transaction transaction) {
         super(TRANSACTION_PATH);
         writeElements(transaction);
         this.logger.log("New Transaction Written", Level.INFO);
     }
 
+    /**
+     * Write elements into the XML file
+     * @param t Transaction The transaction to write
+     * @see Override
+     * @see Transaction
+     * @see Element
+     * @see DOMSource
+     * @see TransformerFactory
+     * @see Transformer
+     * @see StreamResult
+     * @exception TransformerException Transformer failure
+     * @see TransformerException
+     */
     @Override
     protected void writeElements(Transaction t) {
         Element newTransaction = this.doc.createElement("transaction");

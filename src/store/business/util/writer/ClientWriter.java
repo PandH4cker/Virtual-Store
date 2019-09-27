@@ -12,13 +12,50 @@ import javax.xml.transform.stream.StreamResult;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * <h1>The client writer object</h1>
+ * <p>
+ *     The client writer is an object that
+ *     write a client into a XML file.
+ *     It inherits of the {@code public abstract class Writer<E>} class
+ * </p>
+ * @author Raphael Dray
+ * @version 1.0.0
+ * @since 1.0.0
+ * @see Writer<Client>
+ * @see Client
+ * @see Path
+ */
 public class ClientWriter extends Writer<Client> {
+
+    /**
+     * {@value "files/clients.xml"}
+     */
     private static final Path CLIENTS_PATH = Paths.get("files/clients.xml").toAbsolutePath();
+
+    /**
+     * Write the client into the XML file
+     * @param client Client The client to write
+     */
     public ClientWriter(final Client client) {
         super(CLIENTS_PATH);
         writeElements(client);
         this.logger.log("New Client Written", Level.INFO);
     }
+
+    /**
+     * Write elements into the XML File
+     * @param c Client The client to write
+     * @see Override
+     * @see Client
+     * @see Element
+     * @see DOMSource
+     * @see TransformerFactory
+     * @see Transformer
+     * @see StreamResult
+     * @exception TransformerException Transformer failure
+     * @see TransformerException
+     */
     @Override
     protected void writeElements(Client c) {
         Element newClient = this.doc.createElement("client");

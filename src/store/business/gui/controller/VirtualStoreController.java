@@ -25,6 +25,30 @@ import java.nio.file.Paths;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+/**
+ * <h1>The main controller of the FXML App</h1>
+ * <p>
+ *     The {@code public class VirtualStoreController} class implements the
+ *     {@code public interface Initializable} interface in order to
+ *     setup our {@code ComboBox<?>}.
+ *     It handle Button, Text Area and Text Input mouse events / context menu events
+ * </p>
+ * @author Dray Raphael
+ * @version 1.0.0
+ * @since 1.0.0
+ * @see Initializable
+ * @see FXML
+ * @see Logger
+ * @see ProductParser
+ * @see ClientParser
+ * @see store.business.util.parser.Parser
+ * @see Client
+ * @see Product
+ * @see Transaction
+ * @see TransactionWriter
+ * @see store.business.util.writer.ClientWriter
+ * @see Logger
+ */
 public class VirtualStoreController implements Initializable {
     @FXML
     private ComboBox<String> comboBoxCategory;
@@ -62,11 +86,28 @@ public class VirtualStoreController implements Initializable {
     private Client client;
     private Product product;
 
+    /**
+     * This constructor initialize the parsers
+     * @see ProductParser
+     * @see ClientParser
+     * @see store.business.util.parser.Parser
+     */
     public VirtualStoreController() {
         this.productParser = new ProductParser();
         this.clientParser = new ClientParser();
     }
 
+    /**
+     * {@inheritDoc}
+     * @param location {@inheritDoc}
+     * @param resources {@inheritDoc}
+     * @see Override
+     * @see URL
+     * @see ResourceBundle
+     * @see ComboBox<String>
+     * @see ProductParser
+     * @see ComboBox<Integer>
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.comboBoxCategory.getItems().add("Tous");
@@ -76,6 +117,12 @@ public class VirtualStoreController implements Initializable {
         this.logger.log("Controller Initialized", Level.INFO);
     }
 
+    /**
+     * Called to clear fields when a product is bought
+     * @see TextField
+     * @see TextArea
+     * @see Label
+     */
     private void clearFields() {
         this.clientNameTextField.clear();
         this.currentClientDescription.clear();
@@ -84,6 +131,13 @@ public class VirtualStoreController implements Initializable {
         this.currentProductLabel.setText("Nom du produit courant");
     }
 
+    /**
+     * Handle close action
+     * @param event {@inheritDoc}
+     * @see System
+     * @see FXML
+     * @see MouseEvent
+     */
     @FXML
     public void handleCloseAction(MouseEvent event) {
         this.logger.log("Close Action Event", Level.INFO);
@@ -91,7 +145,15 @@ public class VirtualStoreController implements Initializable {
             System.exit(0);
     }
 
-
+    /**
+     * Handle the search by category
+     * @param event {@inheritDoc}
+     * @see FXML
+     * @see MouseEvent
+     * @see Button
+     * @see ComboBox<String>
+     * @see TextArea
+     */
     @FXML
     public void handleSearchByCategoryAction(MouseEvent event) {
         this.logger.log("Search By Category Event", Level.INFO);
@@ -126,6 +188,24 @@ public class VirtualStoreController implements Initializable {
         }
     }
 
+    /**
+     * Handle the context menu of the selected text
+     * @param event {@inheritDoc}
+     * @see ContextMenuEvent
+     * @see FXML
+     * @see TextArea
+     * @see Product
+     * @see ProductParser
+     * @exception RuntimeException Unknown product
+     * @see RuntimeException
+     * @see ImageView
+     * @see Image
+     * @see FileInputStream
+     * @see Paths
+     * @exception FileNotFoundException File not found
+     * @see FileNotFoundException
+     * @see Label
+     */
     @FXML
     public void handleSelectedTextAction(ContextMenuEvent event) {
         this.logger.log("Selected Text Event", Level.INFO);
@@ -160,6 +240,20 @@ public class VirtualStoreController implements Initializable {
         }
     }
 
+    /**
+     * Handle the search by client
+     * @param event {@inheritDoc}
+     * @see FXML
+     * @see MouseEvent
+     * @see Button
+     * @see TextField
+     * @see Client
+     * @see ClientParser
+     * @exception RuntimeException Unknown Client
+     * @see RuntimeException
+     * @see TextArea
+     * @see Label
+     */
     @FXML
     public void handleSearchByClientAction(MouseEvent event) {
         this.logger.log("Search By Client Event", Level.INFO);
@@ -188,6 +282,22 @@ public class VirtualStoreController implements Initializable {
         }
     }
 
+    /**
+     * Handle the buy button
+     * @param event {@inheritDoc}
+     * @see FXML
+     * @see MouseEvent
+     * @see Button
+     * @see ComboBox<Integer>
+     * @see TextArea
+     * @see Product
+     * @see TransactionWriter
+     * @see Transaction
+     * @see Client
+     * @see Date
+     * @exception NoMoreOfThisProductException No More Of This Product
+     * @see NoMoreOfThisProductException
+     */
     @FXML
     public void handleBuyButton(MouseEvent event) {
         this.logger.log("Buy Button Event", Level.INFO);
