@@ -19,6 +19,7 @@ import java.util.ArrayList;
  *     Prepare the XML document and
  *     get the root of it from a file path
  * </p>
+ * <img src="../../../../uml/Parser.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

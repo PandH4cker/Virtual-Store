@@ -19,6 +19,7 @@ import java.nio.file.Paths;
  *     write a client into a XML file.
  *     It inherits of the {@code public abstract class Writer<E>} class
  * </p>
+ * <img src="../../../../uml/ClientWriter.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

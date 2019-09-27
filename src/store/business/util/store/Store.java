@@ -13,6 +13,7 @@ import javax.swing.*;
  *     <li>A name</li>
  *     <li>A logo</li>
  * </p>
+ * <img src="../../../../uml/Store.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

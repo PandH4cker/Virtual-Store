@@ -10,6 +10,7 @@ import store.business.util.logger.level.Level;
  *     <li>A platform</li>
  *     It inherits of the {@code public abstract class Product} class
  * </p>
+ * <img src="../../../../uml/VideoGame.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

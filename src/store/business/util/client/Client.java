@@ -14,6 +14,7 @@ import store.business.util.logger.LoggerFactory;
  *     <li>A postal code</li>
  *     <li>An UID</li>
  * </p>
+ * <img src="../../../../uml/Client.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

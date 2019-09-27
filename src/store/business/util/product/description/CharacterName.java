@@ -7,6 +7,7 @@ package store.business.util.product.description;
  *     It implements the {@code public interface Comparable<E>} interface
  *     It means that the class can be compared to another object of the same class
  * </p>
+ * <img src="../../../../../uml/CharacterName.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

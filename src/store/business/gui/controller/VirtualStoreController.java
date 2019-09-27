@@ -33,6 +33,8 @@ import java.util.ResourceBundle;
  *     setup our {@code ComboBox<?>}.
  *     It handle Button, Text Area and Text Input mouse events / context menu events
  * </p>
+ * <img src="../../../../uml/VirtualStoreController.png" />
+ *
  * @author Dray Raphael
  * @version 1.0.0
  * @since 1.0.0

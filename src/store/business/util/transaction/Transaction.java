@@ -16,6 +16,7 @@ import java.util.Date;
  *     <li>A number of product</li>
  *     <li>A date</li>
  * </p>
+ * <img src="../../../../uml/Transaction.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

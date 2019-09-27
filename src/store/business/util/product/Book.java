@@ -12,6 +12,7 @@ import store.business.util.product.description.CharacterName;
  *     <li>A number of pages</li>
  *     It inherits of the {@code public abstract class Product} class
  * </p>
+ * <img src="../../../../uml/Book.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

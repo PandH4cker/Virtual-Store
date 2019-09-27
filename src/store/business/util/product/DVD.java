@@ -15,6 +15,7 @@ import java.util.Collections;
  *     <li>A duration</li>
  *     It inherits of the {@code public abstract class Product} class
  * </p>
+ * <img src="../../../../uml/DVD.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

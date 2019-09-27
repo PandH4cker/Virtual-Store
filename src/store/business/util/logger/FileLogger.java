@@ -15,6 +15,7 @@ import static java.nio.file.StandardOpenOption.*;
  *     Logs messages into a file.
  *     It implements the {@code public interface Logger} interface.
  * </p>
+ * <img src="../../../../uml/FileLogger.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

@@ -19,6 +19,7 @@ import java.nio.file.Paths;
  *     write a transaction into a XML file.
  *     It inherits of the {@code public abstract class Write<E>} class
  * </p>
+ * <img src="../../../../uml/TransactionWriter.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

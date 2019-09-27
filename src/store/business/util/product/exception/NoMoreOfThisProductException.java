@@ -7,6 +7,7 @@ package store.business.util.product.exception;
  *     It inherits of the {@code public class Throwable} class
  *     It means it can be thrown as an Exception
  * </p>
+ * <img src="../../../../../uml/NoMoreOfThisProductException.png" />
  * @see Throwable
  */
 public class NoMoreOfThisProductException extends Throwable {

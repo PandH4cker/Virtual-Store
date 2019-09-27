@@ -9,6 +9,7 @@ import store.business.util.logger.level.Level;
  *     Log the messages into the console.
  *     It implements the {@code public interface Logger} interface
  * </p>
+ * <img src="../../../../uml/ConsoleLogger.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

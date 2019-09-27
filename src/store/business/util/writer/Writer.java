@@ -19,6 +19,7 @@ import java.nio.file.Path;
  *     <li>A document</li>
  *     <li>An root element</li>
  * </p>
+ * <img src="../../../../uml/Writer.png" />
  * @param <E> E The generic type of the writer object
  * @author Raphael Dray
  * @version 1.0.0

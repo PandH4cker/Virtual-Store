@@ -17,6 +17,7 @@ import store.business.util.product.exception.NoMoreOfThisProductException;
  *     <li>A hash code</li>
  *     It inherits of the Comparable<E> class, it can be sorted by price
  * </p>
+ * <img src="../../../../uml/Product.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

@@ -20,6 +20,7 @@ import java.util.LinkedList;
  *     Parse the products into a list of product
  *     It inherits of the {@code public abstract class Parser<E>} generic class
  * </p>
+ * <img src="../../../../uml/ProductParser.png" />
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
