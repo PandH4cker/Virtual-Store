@@ -19,3 +19,8 @@
 <img src="./MainView.PNG"
      alt="Main View"
      style="float: left; margin-right: 10px"/>
+---
+### New Client View:
+<img src="./NewClientView.PNG"
+     alt="New Client View"
+     style="float: left; margin-right: 10px"/>
