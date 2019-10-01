@@ -107,4 +107,22 @@
 		<amount>1</amount>
 		<date>2019-09-26 17:11:59</date>
 	</transaction>
+	<transaction>
+		<clientUID>156581881389</clientUID>
+		<productUID>660775668448474</productUID>
+		<amount>50</amount>
+		<date>2019-09-30 09:35:12</date>
+	</transaction>
+	<transaction>
+		<clientUID>156581881389</clientUID>
+		<productUID>660775668448474</productUID>
+		<amount>10</amount>
+		<date>2019-09-30 15:12:48</date>
+	</transaction>
+	<transaction>
+		<clientUID>1189070338</clientUID>
+		<productUID>660775668448474</productUID>
+		<amount>8</amount>
+		<date>2019-10-01 15:21:31</date>
+	</transaction>
 </transactions_list>

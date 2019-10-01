@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import store.business.gui.view.NewClientView;
 import store.business.util.client.Client;
 import store.business.util.logger.level.Level;
 import store.business.util.logger.Logger;
@@ -81,12 +83,13 @@ public class VirtualStoreController implements Initializable {
 
     private final Logger logger = LoggerFactory.getLogger("VirtualStoreController");
     private final ProductParser productParser;
-    private final ClientParser clientParser;
+    private ClientParser clientParser;
     private String selectedProduct;
     private String selectedClient;
     private int selectedAmount;
     private Client client;
     private Product product;
+    private NewClientView newClientView;
 
     /**
      * This constructor initialize the parsers
@@ -97,6 +100,7 @@ public class VirtualStoreController implements Initializable {
     public VirtualStoreController() {
         this.productParser = new ProductParser();
         this.clientParser = new ClientParser();
+        this.newClientView = new NewClientView(this.clientParser);
     }
 
     /**
@@ -116,7 +120,7 @@ public class VirtualStoreController implements Initializable {
         for(String s : this.productParser.getAttributes())
             this.comboBoxCategory.getItems().add(s);
         this.comboBoxAmount.getItems().addAll(1, 2, 4, 8, 10, 20, 40, 50, 100);
-        this.logger.log("Controller Initialized", Level.INFO);
+        this.logger.log("Virtual Store Controller Initialized", Level.INFO);
     }
 
     /**
@@ -260,19 +264,25 @@ public class VirtualStoreController implements Initializable {
     public void handleSearchByClientAction(MouseEvent event) {
         this.logger.log("Search By Client Event", Level.INFO);
         if(event.getSource() == this.searchByClientButton) {
-             this.selectedClient = this.clientNameTextField.getText().trim();
+            this.clientParser = new ClientParser();
+            this.selectedClient = this.clientNameTextField.getText().trim();
             if(this.selectedClient.length() != 0) {
                 String[] splittedClientName = this.selectedClient.split(" ");
                 Client client = null;
-                for(Client c : this.clientParser.getEList()) {
-                    if((c.getName().trim().equals(splittedClientName[0]) && c.getSurname().trim().equals(splittedClientName[1]))
-                        || (c.getName().trim().equals(splittedClientName[1]) && c.getSurname().trim().equals(splittedClientName[0]))) {
-                        client = c;
-                        break;
+                if(splittedClientName.length > 1)
+                    for(Client c : this.clientParser.getEList()) {
+                        if ((c.getName().trim().equals(splittedClientName[0]) && c.getSurname().trim().equals(splittedClientName[1]))
+                                || (c.getName().trim().equals(splittedClientName[1]) && c.getSurname().trim().equals(splittedClientName[0]))) {
+                            client = c;
+                            break;
+                        }
                     }
+                if(client == null) {
+                    if(this.clientNameTextField.getText().trim().length() != 0)
+                        this.clientNameTextField.clear();
+                    try { this.newClientView.start(new Stage()); }
+                    catch (Exception e) { this.logger.log(e.getMessage(), Level.ERROR); }
                 }
-                //TODO Instantiate ClientWriter here
-                if(client == null) throw new RuntimeException("Unknown Client");
                 else {
                     this.client = client;
                     if(this.currentClientDescription.getText().trim().length() != 0)

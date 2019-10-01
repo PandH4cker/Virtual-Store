@@ -24,7 +24,7 @@ import java.nio.file.Paths;
  * @see Application
  * @see Parent
  */
-public class App extends Application {
+public class VirtualStoreView extends Application {
     private double xFrame;
     private double yFrame;
 

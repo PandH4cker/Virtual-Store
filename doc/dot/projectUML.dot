@@ -26,8 +26,8 @@ digraph G {
 <tr><td align="left" balign="left"> + handleBuyButton() </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="arial", fontcolor="black", fontsize=10.0];
-	// store.business.gui.view.App
-	c1 [label=<<table title="store.business.gui.view.App" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	// store.business.gui.view.VirtualStoreView
+	c1 [label=<<table title="store.business.gui.view.VirtualStoreView" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> App </td></tr>
 		</table></td></tr>
@@ -334,7 +334,7 @@ digraph G {
 		</table>>, URL="null", fontname="arial", fontcolor="black", fontsize=10.0];
 	//store.business.gui.controller.VirtualStoreController implements javafx.fxml.Initializable
 	c31:p -> c0:p [dir=back,arrowtail=empty,style=dashed];
-	//store.business.gui.view.App extends javafx.application.Application
+	//store.business.gui.view.VirtualStoreView extends javafx.application.Application
 	c32:p -> c1:p [dir=back,arrowtail=empty];
 	//store.business.util.logger.CompositeLogger implements store.business.util.logger.Logger
 	c8:p -> c3:p [dir=back,arrowtail=empty,style=dashed];

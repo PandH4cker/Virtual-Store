@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="285.0" style="-fx-background-color: #2A0033;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="store.business.gui.controller.NewClientController">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="285.0" stylesheets="@style.css">
+         <children>
+            <Label fx:id="panelNameLabel" layoutX="47.0" layoutY="34.0" onMouseClicked="#handlePanelNameLabel" stylesheets="@style.css" text="Nouveau Client" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="AR ESSENCE" size="36.0" />
+               </font>
+            </Label>
+            <FlowPane layoutX="10.0" layoutY="92.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="265.0" stylesheets="@style.css">
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="265.0" stylesheets="@style.css">
+                     <children>
+                        <TextField fx:id="nameTextField" layoutX="15.0" layoutY="27.0" prefHeight="39.0" prefWidth="236.0" promptText="Nom" stylesheets="@style.css">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="265.0" stylesheets="@style.css">
+                     <children>
+                        <TextField fx:id="surnameTextField" layoutX="15.0" layoutY="27.0" prefHeight="39.0" prefWidth="236.0" promptText="Prénom" stylesheets="@style.css">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="265.0" stylesheets="@style.css">
+                     <children>
+                        <TextField fx:id="addressTextField" layoutX="15.0" layoutY="27.0" prefHeight="39.0" prefWidth="236.0" promptText="Adresse" stylesheets="@style.css">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="265.0" stylesheets="@style.css">
+                     <children>
+                        <TextField fx:id="postalCodeTextField" layoutX="15.0" layoutY="27.0" prefHeight="39.0" prefWidth="236.0" promptText="Code Postal" stylesheets="@style.css">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="85.0" prefWidth="264.0" stylesheets="@style.css">
+                     <children>
+                        <Button fx:id="saveButton" disable="true" layoutX="22.0" layoutY="14.0" onMouseClicked="#handleSaveButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="220.0" stylesheets="@style.css" text="Enregistrer">
+                           <font>
+                              <Font name="AR ESSENCE" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/save.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </FlowPane>
+            <Label fx:id="closerLabel" layoutX="266.0" layoutY="1.0" onMouseClicked="#handleCloserLabel" styleClass="closer" stylesheets="@style.css" text="X" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

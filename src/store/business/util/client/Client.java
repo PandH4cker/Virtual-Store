@@ -49,6 +49,39 @@ public class Client {
         logger.log("New Client Created [" + this + "]", Level.INFO);
     }
 
+    public Client(final String name,
+                  final String surname,
+                  final String address,
+                  final int postalCode) {
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.uniqueID = this.computeHashCode(name, surname, address, postalCode);
+        logger.log("New Client Created [" + this + "]", Level.INFO);
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        if(this == other) return true;
+        if(!(other instanceof Client)) return false;
+
+        final Client client = (Client) other;
+        return this.getUniqueID() == client.getUniqueID();
+    }
+
+    private long computeHashCode(final String name,
+                                 final String surname,
+                                 final String address,
+                                 final int postalCode) {
+        int result = postalCode;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + surname.hashCode();
+        result = 31 * result + address.hashCode();
+
+        return result;
+    }
+
     /**
      * Getter of the name
      * @return String The name of the client
