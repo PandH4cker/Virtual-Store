@@ -19,6 +19,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * <h1>The Controller for creating a new client</h1>
+ * <p>
+ *     The {@code public class NewClientController} class implements the
+ *     {@code public interface Initializable} interface in order to unfocus all the components
+ *     of the view and to add a listener on each Input Text to disable/enable the submit button
+ * </p>
+ *
+ * @author Dray Raphael
+ * @version 1.0.0
+ * @since 1.0.0
+ * @see Initializable
+ * @see FXML
+ * @see Logger
+ * @see ClientParser
+ */
 public class NewClientController implements Initializable {
     @FXML
     private TextField nameTextField;
@@ -36,10 +52,27 @@ public class NewClientController implements Initializable {
     private final Logger logger = LoggerFactory.getLogger("NewClientController");
     private ClientParser clientParser;
 
+    /**
+     * This constructor initialize the clientParser by the information given by the view
+     * @see ClientParser
+     * @see NewClientView
+     */
     public NewClientController() {
         this.clientParser = NewClientView.getClientParser();
     }
 
+    /**
+     * {@inheritDoc}
+     * @param location {@inheritDoc}
+     * @param resources {@inheritDoc}
+     * @see Override
+     * @see URL
+     * @see ResourceBundle
+     * @see TextField
+     * @see Logger
+     * @see Level
+     * @see Button
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.unfocusedAll();
@@ -95,14 +128,33 @@ public class NewClientController implements Initializable {
         this.logger.log("New Client Controller Initialized", Level.INFO);
     }
 
+    /**
+     * Handle the name label to be focused
+     * @param event {@inheritDoc}
+     * @see Label
+     * @see MouseEvent
+     */
     public void handlePanelNameLabel(MouseEvent event) {
         if(event.getSource() == this.panelNameLabel) this.panelNameLabel.requestFocus();
     }
 
+    /**
+     * Handle the closer label to close only this view from where come the event
+     * @param event {@inheritDoc}
+     * @see MouseEvent
+     */
     public void handleCloserLabel(MouseEvent event) {
         closeView(event);
     }
 
+    /**
+     * Handle the save button to save the informations of the new client
+     * @param event {@inheritDoc}
+     * @see MouseEvent
+     * @see Button
+     * @see ClientParser
+     * @see TextField
+     */
     public void handleSaveButton(MouseEvent event) {
         if(event.getSource() == this.saveButton) {
             this.clientParser = new ClientParser();
@@ -115,12 +167,25 @@ public class NewClientController implements Initializable {
         }
     }
 
+    /**
+     * Close view from where come an event
+     * @param event {@inheritDoc}
+     * @see MouseEvent
+     * @see Node
+     * @see Logger
+     * @see Level
+     */
     private void closeView(MouseEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         try { NewClientView.instanceClosed(); }
         catch (IOException e) { this.logger.log(e.getMessage(), Level.ERROR); }
     }
 
+    /**
+     * Check if the save button can be enable
+     * @return {@code true} or {@code false} if there is not text in one Text Field
+     * @see TextField
+     */
     private boolean canBeEnable() {
         return this.isThereText(this.nameTextField) &&
                this.isThereText(this.surnameTextField) &&
@@ -128,10 +193,20 @@ public class NewClientController implements Initializable {
                this.isThereText(this.postalCodeTextField);
     }
 
+    /**
+     * Check if there is text in a Text Field
+     * @param tf The TextField to check
+     * @return {@code true} or {@code false} if there is not text in the Text Field
+     * @see TextField
+     */
     private boolean isThereText(TextField tf) {
         return tf.getText().trim().length() != 0;
     }
 
+    /**
+     * Unfocus every Text Field
+     * @see TextField
+     */
     private void unfocusedAll() {
         this.nameTextField.setFocusTraversable(false);
         this.surnameTextField.setFocusTraversable(false);

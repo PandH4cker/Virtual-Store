@@ -125,4 +125,10 @@
 		<amount>8</amount>
 		<date>2019-10-01 15:21:31</date>
 	</transaction>
-</transactions_list>
+	<transaction>
+		<clientUID>1244600107</clientUID>
+		<productUID>660775668448474</productUID>
+		<amount>8</amount>
+		<date>2019-10-02 08:27:32</date>
+	</transaction>
+<transaction><clientUID>750661733</clientUID><productUID>2849334650</productUID><amount>8</amount><date>2019-10-04 12:49:48</date></transaction><transaction><clientUID>1930211277</clientUID><productUID>19763194693</productUID><amount>8</amount><date>2019-11-04 17:23:16</date></transaction><transaction><clientUID>1966838890</clientUID><productUID>101830</productUID><amount>100</amount><date>2019-11-18 10:35:12</date></transaction></transactions_list>

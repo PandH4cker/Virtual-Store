@@ -259,6 +259,7 @@ public class VirtualStoreController implements Initializable {
      * @see RuntimeException
      * @see TextArea
      * @see Label
+     * @see NewClientView
      */
     @FXML
     public void handleSearchByClientAction(MouseEvent event) {
