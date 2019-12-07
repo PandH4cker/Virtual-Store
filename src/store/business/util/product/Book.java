@@ -148,7 +148,7 @@ public class Book extends Product {
                 return false;
             }
         },
-        FRENCH("Français") {
+        FRENCH("Francais") {
             @Override
             public boolean isEnglish() {
                 return false;

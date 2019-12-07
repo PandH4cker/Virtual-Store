@@ -79,7 +79,7 @@ public class Client {
         result = 31 * result + surname.hashCode();
         result = 31 * result + address.hashCode();
 
-        return result;
+        return result & 0xffffffffL / 10;
     }
 
     /**
