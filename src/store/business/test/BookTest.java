@@ -1,4 +1,9 @@
 package store.business.test;
 
-public class BookTest {
+import store.business.util.product.Book;
+
+class BookTest {
+    private Book book = null;
+
+
 }

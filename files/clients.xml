@@ -8,38 +8,16 @@
 		<UID>134811913</UID>
 	</client>
 	<client>
-		<name>Serkesti</name>
-		<surname>Sofiane</surname>
-		<address>ESIEA</address>
-		<postalCode>93310</postalCode>
-		<UID>3216046766</UID>
-	</client>
-	<client>
-		<name>Desevin</name>
+		<name>De Sevin</name>
 		<surname>Alexandre</surname>
-		<address>ESIEA</address>
-		<postalCode>93310</postalCode>
-		<UID>17307921</UID>
-	</client>
+		<address>5, Place Charles Digeon, Saint-Mande</address>
+		<postalCode>94160</postalCode>
+		<UID>276830473</UID></client>
 	<client>
-		<name>Nevoux</name>
-		<surname>Guillaume</surname>
-		<address>ESIEA</address>
-		<postalCode>93310</postalCode>
-		<UID>144183297</UID>
-	</client>
-	<client>
-		<name>Joseph</name>
-		<surname>Emanuel</surname>
-		<address>zefzef</address>
-		<postalCode>96123</postalCode>
-		<UID>285772169</UID>
-	</client>
-	<client>
-		<name>Khamphousone</name>
-		<surname>Thierry</surname>
-		<address>ESIEA</address>
-		<postalCode>93310</postalCode>
-		<UID>1966838890</UID>
+		<name>Nacache</name>
+		<surname>Clara</surname>
+		<address>9, Rue Jean Moulin, Rosny-sous-bois</address>
+		<postalCode>93110</postalCode>
+		<UID>278432145</UID>
 	</client>
 </clients_list>

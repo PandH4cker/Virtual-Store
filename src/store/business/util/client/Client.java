@@ -1,8 +1,13 @@
 package store.business.util.client;
 
+import store.business.gui.model.Model;
+import store.business.util.client.exception.MalformedClientParameterException;
 import store.business.util.logger.level.Level;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <h1>The client object</h1>
@@ -20,12 +25,12 @@ import store.business.util.logger.LoggerFactory;
  * @since 1.0.0
  * @see Logger
  */
-public class Client {
+public class Client implements Model<MalformedClientParameterException> {
     private final Logger logger = LoggerFactory.getLogger("Client");
     private final String name;
     private final String surname;
     private final String address;
-    private final int postalCode;
+    private final String postalCode;
     private final long uniqueID;
 
     /**
@@ -39,25 +44,27 @@ public class Client {
     public Client(final String name,
                   final String surname,
                   final String address,
-                  final int postalCode,
-                  final long uniqueID) {
+                  final String postalCode,
+                  final long uniqueID) throws MalformedClientParameterException {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.postalCode = postalCode;
         this.uniqueID = uniqueID;
+        validate();
         logger.log("New Client Created [" + this + "]", Level.INFO);
     }
 
     public Client(final String name,
                   final String surname,
                   final String address,
-                  final int postalCode) {
+                  final String postalCode) throws MalformedClientParameterException {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.postalCode = postalCode;
         this.uniqueID = this.computeHashCode(name, surname, address, postalCode);
+        validate();
         logger.log("New Client Created [" + this + "]", Level.INFO);
     }
 
@@ -73,8 +80,8 @@ public class Client {
     private long computeHashCode(final String name,
                                  final String surname,
                                  final String address,
-                                 final int postalCode) {
-        int result = postalCode;
+                                 final String postalCode) {
+        long result = Long.parseLong(postalCode);
         result = 31 * result + name.hashCode();
         result = 31 * result + surname.hashCode();
         result = 31 * result + address.hashCode();
@@ -110,7 +117,7 @@ public class Client {
      * Getter of the postal code
      * @return int The postal code of the client
      */
-    public int getPostalCode() {
+    public String getPostalCode() {
         return this.postalCode;
     }
 
@@ -133,5 +140,34 @@ public class Client {
                 +"\n" +this.surname
                 +"\n" +this.address
                 +"\n" +this.postalCode;
+    }
+
+    @Override
+    public void validate() throws MalformedClientParameterException {
+        List<String> errors = new ArrayList<>();
+
+        if(!hasContent(this.name)) errors.add("Name has no content.");
+        if(!hasContent(this.surname)) errors.add("Surname has no content.");
+        if(!hasContent(this.address)) errors.add("Address has no content.");
+        if(!hasContent(this.postalCode)) errors.add("Postal Code has no content.");
+
+        boolean passes = this.postalCode.matches("^(([0-8][0-9])|(9[0-5]))[0-9]{3}$");
+        if(!passes) errors.add("Postal Code malformed");
+
+        passes = this.name.matches("^[A-Z]([a-z]+\\s[A-Z][a-z]+|[a-z]+)");
+        if(!passes) errors.add("Name need to start with a capital letter and does not include numbers");
+        passes = this.surname.matches("^[A-Z]([a-z]+\\s[A-Z][a-z]+|[a-z]+)");
+        if(!passes) errors.add("Surname need to start with a capital letter and does not include numbers");
+
+        passes = ensureNotNull(this.uniqueID, "UID is null", errors);
+        if (passes)
+            if(!(this.uniqueID > 0)) errors.add("UID is negative");
+
+        if (!errors.isEmpty()) {
+            MalformedClientParameterException ex = new MalformedClientParameterException();
+            for (String error : errors)
+                ex.addSuppressed(new MalformedClientParameterException(error));
+            throw ex;
+        }
     }
 }

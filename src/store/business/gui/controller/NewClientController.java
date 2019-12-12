@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import store.business.gui.view.NewClientView;
 import store.business.util.client.Client;
+import store.business.util.client.exception.MalformedClientParameterException;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
 import store.business.util.logger.level.Level;
@@ -157,12 +158,21 @@ public class NewClientController implements Initializable {
      */
     public void handleSaveButton(MouseEvent event) {
         if(event.getSource() == this.saveButton) {
-            this.clientParser = new ClientParser();
-            final Client client = new Client(this.nameTextField.getText().trim(),
-                    this.surnameTextField.getText().trim(),
-                    this.addressTextField.getText().trim(),
-                    Integer.parseInt(this.postalCodeTextField.getText().trim()));
-            if(!this.clientParser.getEList().contains(client)) new ClientWriter(client);
+            try {
+                this.clientParser = new ClientParser();
+            } catch (MalformedClientParameterException e) {
+                this.logger.log(e.getMessage(), Level.ERROR);
+            }
+            final Client client;
+            try {
+                client = new Client(this.nameTextField.getText().trim(),
+                        this.surnameTextField.getText().trim(),
+                        this.addressTextField.getText().trim(),
+                        this.postalCodeTextField.getText().trim());
+                if(!this.clientParser.getEList().contains(client)) new ClientWriter(client);
+            } catch (MalformedClientParameterException e) {
+                this.logger.log(e.getMessage(), Level.ERROR);
+            }
             closeView(event);
         }
     }

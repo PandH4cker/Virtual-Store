@@ -4,6 +4,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import store.business.util.client.Client;
+import store.business.util.client.exception.MalformedClientParameterException;
 import store.business.util.logger.level.Level;
 
 import java.nio.file.Path;
@@ -34,7 +35,7 @@ public class ClientParser extends Parser<Client> {
      * Inherits the constructor of the {@code public abstract class Parser<E>} class
      * Add elements to the list
      */
-    public ClientParser() {
+    public ClientParser() throws MalformedClientParameterException {
         super(CLIENTS_PATH);
         addEElements();
         this.logger.log("Clients Parsed", Level.INFO);
@@ -44,7 +45,7 @@ public class ClientParser extends Parser<Client> {
      * {@inheritDoc}
      */
     @Override
-    protected void addEElements() {
+    protected void addEElements() throws MalformedClientParameterException {
         final NodeList nodeRoot = this.getRootElement().getChildNodes();
         final int nodeRootLength = nodeRoot.getLength();
         final String[] clientElements = {"name", "surname", "address", "postalCode", "UID"};
@@ -55,7 +56,7 @@ public class ClientParser extends Parser<Client> {
                 final LinkedList<String> elementsString = new LinkedList<>();
                 for(String s : clientElements) elementsString.add(client.getElementsByTagName(s).item(0).getTextContent());
                 this.getEList().add(new Client(elementsString.pop(), elementsString.pop(),
-                                               elementsString.pop(), Integer.parseInt(elementsString.pop()),
+                                               elementsString.pop(), elementsString.pop(),
                                                Long.parseLong(elementsString.pop())));
             }
         }

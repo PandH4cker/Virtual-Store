@@ -74,7 +74,7 @@ public class ClientWriter extends Writer<Client> {
         newClient.appendChild(address);
 
         Element postalCode = this.doc.createElement("postalCode");
-        postalCode.appendChild(this.doc.createTextNode(Integer.toString(c.getPostalCode())));
+        postalCode.appendChild(this.doc.createTextNode(c.getPostalCode()));
         newClient.appendChild(postalCode);
 
         Element UID = this.doc.createElement("UID");

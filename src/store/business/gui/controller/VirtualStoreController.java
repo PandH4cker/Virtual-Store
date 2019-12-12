@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import store.business.gui.view.NewClientView;
 import store.business.util.client.Client;
+import store.business.util.client.exception.MalformedClientParameterException;
 import store.business.util.logger.level.Level;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
@@ -99,7 +100,10 @@ public class VirtualStoreController implements Initializable {
      */
     public VirtualStoreController() {
         this.productParser = new ProductParser();
-        this.clientParser = new ClientParser();
+
+        try { this.clientParser = new ClientParser(); }
+        catch (MalformedClientParameterException e) { this.logger.log(e.getMessage(), Level.ERROR); }
+
         this.newClientView = new NewClientView(this.clientParser);
     }
 
@@ -265,7 +269,9 @@ public class VirtualStoreController implements Initializable {
     public void handleSearchByClientAction(MouseEvent event) {
         this.logger.log("Search By Client Event", Level.INFO);
         if(event.getSource() == this.searchByClientButton) {
-            this.clientParser = new ClientParser();
+            try { this.clientParser = new ClientParser(); }
+            catch (MalformedClientParameterException e) { this.logger.log(e.getMessage(), Level.ERROR); }
+
             this.selectedClient = this.clientNameTextField.getText().trim();
             if(this.selectedClient.length() != 0) {
                 String[] splittedClientName = this.selectedClient.split(" ");
