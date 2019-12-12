@@ -158,11 +158,7 @@ public class NewClientController implements Initializable {
      */
     public void handleSaveButton(MouseEvent event) {
         if(event.getSource() == this.saveButton) {
-            try {
-                this.clientParser = new ClientParser();
-            } catch (MalformedClientParameterException e) {
-                this.logger.log(e.getMessage(), Level.ERROR);
-            }
+            this.clientParser = new ClientParser();
             final Client client;
             try {
                 client = new Client(this.nameTextField.getText().trim(),

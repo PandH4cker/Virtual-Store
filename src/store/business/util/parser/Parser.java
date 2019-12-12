@@ -99,5 +99,5 @@ public abstract class Parser<E> {
      * Add the E elements to the list of E
      * @see E
      */
-    protected abstract void addEElements() throws MalformedClientParameterException;
+    protected abstract void addEElements();
 }

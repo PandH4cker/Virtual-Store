@@ -1,6 +1,11 @@
 package store.business.util.product;
 
 import store.business.util.logger.level.Level;
+import store.business.util.product.exception.MalformedProductParameterException;
+import store.business.util.product.exception.MalformedVideoGameParameterException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <h1>The Video Game object</h1>
@@ -40,10 +45,11 @@ public class VideoGame extends Product {
                      final int numberLeft,
                      final String image,
                      final VideoGameGenre genre,
-                     final VideoGamePlatform platform) {
+                     final VideoGamePlatform platform) throws MalformedProductParameterException {
         super(ProductCategory.VIDEOGAME, title, price, uniqueID, numberLeft, image);
         this.genre = genre;
         this.platform = platform;
+        validate();
         this.logger.log("New Video Game Created [" + this + "]", Level.INFO);
     }
 
@@ -53,11 +59,12 @@ public class VideoGame extends Product {
                      final String numberLeft,
                      final String image,
                      final String genre,
-                     final String platform) {
+                     final String platform) throws MalformedProductParameterException {
         super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Long.parseLong(uniqueID),
               Integer.parseInt(numberLeft), image);
         this.genre = VideoGameGenre.toVideoGameGenre(genre);
         this.platform = VideoGamePlatform.toVideoGamePlatform(platform);
+        validate();
         this.logger.log("New Video Game created [" + this + "]", Level.INFO);
     }
 
@@ -90,6 +97,42 @@ public class VideoGame extends Product {
                 +"\n" +this.platform
                 +"\n" +this.price+" €"
                 +"\n" +this.numberLeft+" restants";
+    }
+
+    @Override
+    public void validate() throws MalformedProductParameterException {
+        super.validate();
+
+        List<String> errors = new ArrayList<>();
+
+        boolean passes = ensureNotNull(this.genre, "Genre is null", errors);
+        if (passes) {
+            passes = false;
+            for (VideoGameGenre vgg : VideoGameGenre.values())
+                if (this.genre.name().equals(vgg.name())) {
+                    passes = true;
+                    break;
+                }
+            if (!passes) errors.add("Genre is malformed");
+        }
+
+        passes = ensureNotNull(this.platform, "Platform is null", errors);
+        if (passes) {
+            passes = false;
+            for (VideoGamePlatform vgp : VideoGamePlatform.values())
+                if (this.platform.name().equals(vgp.name())) {
+                    passes = true;
+                    break;
+                }
+            if (!passes) errors.add("Platform is malformed");
+        }
+
+        if (!errors.isEmpty()) {
+            MalformedVideoGameParameterException ex = new MalformedVideoGameParameterException();
+            for (String error : errors)
+                ex.addSuppressed(new MalformedVideoGameParameterException(error));
+            throw ex;
+        }
     }
 
     /**

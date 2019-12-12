@@ -1,7 +1,14 @@
 package store.business.util.product;
 
+import store.business.gui.model.Model;
 import store.business.util.logger.level.Level;
 import store.business.util.product.description.CharacterName;
+import store.business.util.product.description.exception.MalformedCharacterNameParameterException;
+import store.business.util.product.exception.MalformedBookParameterException;
+import store.business.util.product.exception.MalformedProductParameterException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <h1>The book object</h1>
@@ -20,7 +27,7 @@ import store.business.util.product.description.CharacterName;
  * @see CharacterName
  * @see LanguageBook
  */
-public class Book extends Product {
+public class Book extends Product implements Model<MalformedProductParameterException>{
     private final CharacterName author;
     private final LanguageBook language;
     private final int numberOfPages;
@@ -45,11 +52,12 @@ public class Book extends Product {
                 final String image,
                 final CharacterName author,
                 final LanguageBook language,
-                final int numberOfPages) {
+                final int numberOfPages) throws MalformedProductParameterException{
         super(ProductCategory.BOOK, title, price, uniqueID, numberLeft, image);
         this.author = author;
         this.language = language;
         this.numberOfPages = numberOfPages;
+        validate();
         this.logger.log("New Book Created [" + this + "]", Level.INFO);
     }
 
@@ -60,13 +68,15 @@ public class Book extends Product {
                 final String image,
                 final String author,
                 final String language,
-                final String numberOfPages) {
-        super(ProductCategory.VIDEOGAME, title, Integer.parseInt(price), Long.parseLong(uniqueID),
+                final String numberOfPages)
+            throws MalformedCharacterNameParameterException, MalformedProductParameterException {
+        super(ProductCategory.BOOK, title, Integer.parseInt(price), Long.parseLong(uniqueID),
               Integer.parseInt(numberLeft), image);
         final String[] splittedAuthor = author.split(" ");
         this.author = new CharacterName(splittedAuthor[0], splittedAuthor[1]);
         this.language = LanguageBook.toLanguageBook(language);
         this.numberOfPages = Integer.parseInt(numberOfPages);
+        validate();
         this.logger.log("New Book Created [" + this + "]", Level.INFO);
     }
 
@@ -108,6 +118,36 @@ public class Book extends Product {
                 +"\n" +this.numberOfPages+" pages"
                 +"\n" +this.price+" €"
                 +"\n" +this.numberLeft+" restants";
+    }
+
+    @Override
+    public void validate() throws MalformedProductParameterException {
+        super.validate();
+
+        List<String> errors = new ArrayList<>();
+
+        ensureNotNull(this.author, "Author is null", errors);
+        boolean passes = ensureNotNull(this.language, "Language is null", errors);
+        if(passes) {
+            passes = false;
+            for (LanguageBook lb : LanguageBook.values())
+                if (this.language.name().equals(lb.name())) {
+                    passes = true;
+                    break;
+                }
+            if (!passes) errors.add("Language is malformed");
+        }
+
+        passes = ensureNotNull(this.numberOfPages, "Number Of Pages is null", errors);
+        if (passes)
+            if (this.numberOfPages <= 0) errors.add("Number Of Pages is negative");
+
+        if (!errors.isEmpty()) {
+            MalformedBookParameterException ex = new MalformedBookParameterException();
+            for (String error : errors)
+                ex.addSuppressed(new MalformedBookParameterException(error));
+            throw ex;
+        }
     }
 
     /**
@@ -279,9 +319,9 @@ public class Book extends Product {
          * @exception RuntimeException Not a language known
          * @see RuntimeException
          */
-        public static LanguageBook toLanguageBook(String s) {
+        public static LanguageBook toLanguageBook(String s) throws MalformedBookParameterException {
             for(LanguageBook l : LanguageBook.values()) if(l.toString().equalsIgnoreCase(s)) return l;
-            throw new RuntimeException("Not a language known");
+            throw new MalformedBookParameterException("Not a language known");
         }
 
         public abstract boolean isEnglish();

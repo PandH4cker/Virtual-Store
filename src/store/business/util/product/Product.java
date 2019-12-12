@@ -1,8 +1,13 @@
 package store.business.util.product;
 
+import store.business.gui.model.Model;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
+import store.business.util.product.exception.MalformedProductParameterException;
 import store.business.util.product.exception.NoMoreOfThisProductException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <h1>The Product object</h1>
@@ -25,7 +30,7 @@ import store.business.util.product.exception.NoMoreOfThisProductException;
  * @see ProductCategory
  * @see Logger
  */
-public abstract class Product implements Comparable<Product>{
+public abstract class Product implements Comparable<Product>, Model<MalformedProductParameterException> {
     protected final Logger logger = LoggerFactory.getLogger("Product");
     protected final ProductCategory productCategory;
     protected final String name;
@@ -172,6 +177,47 @@ public abstract class Product implements Comparable<Product>{
         if(this.numberLeft - amount >= 0)
             this.numberLeft -= amount;
         else throw new NoMoreOfThisProductException("No More Of This Product [" + this + "]");
+    }
+
+    @Override
+    public void validate() throws MalformedProductParameterException {
+        List<String> errors = new ArrayList<>();
+
+        boolean passes = ensureNotNull(this.productCategory, "Product Category is null", errors);
+        if (passes) {
+            passes = false;
+            for(ProductCategory p : ProductCategory.values())
+                if(this.productCategory.name().equals(p.name())) {
+                    passes = true;
+                    break;
+                }
+            if (!passes) errors.add("Product Category malformed");
+        }
+
+        if (!hasContent(this.name)) errors.add("Name/Title has no content.");
+        if (!hasContent(this.imagePath)) errors.add("Image Path has no content.");
+
+        passes = ensureNotNull(this.price, "Price is null", errors);
+        if (passes)
+            if (this.price < 0) errors.add("Price is negative");
+
+        passes = ensureNotNull(this.uniqueID, "UID is null", errors);
+        if (passes)
+            if (this.uniqueID < 0) errors.add("UID is negative");
+
+        passes = ensureNotNull(this.numberLeft, "Number Left is null", errors);
+        if (passes)
+            if (this.numberLeft < 0) errors.add("Number Left is negative");
+
+        passes = this.imagePath.matches("^(files/resources/image/)([a-zA-Z0-9_\\-]+)\\.(jpg|png)");
+        if(!passes) errors.add("Image Path malformed");
+
+        if(!errors.isEmpty()) {
+            MalformedProductParameterException ex = new MalformedProductParameterException();
+            for(String error : errors)
+                ex.addSuppressed(new MalformedProductParameterException(error));
+            throw ex;
+        }
     }
 
     /**

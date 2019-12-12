@@ -8,6 +8,8 @@ import store.business.util.product.Book;
 import store.business.util.product.DVD;
 import store.business.util.product.Product;
 import store.business.util.product.VideoGame;
+import store.business.util.product.description.exception.MalformedCharacterNameParameterException;
+import store.business.util.product.exception.MalformedProductParameterException;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,22 +82,34 @@ public class ProductParser extends Parser<Product> {
                     case "Jeux Vidéo":
                         for (String s : videoGameElements)
                             elementsString.add(product.getElementsByTagName(s).item(0).getTextContent());
-                        this.getEList().add(new VideoGame(elementsString.pop(), elementsString.pop(), elementsString.pop(),
-                                              elementsString.pop(), elementsString.pop(), elementsString.pop(), elementsString.pop()));
+                        try {
+                            this.getEList().add(new VideoGame(elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                                  elementsString.pop(), elementsString.pop(), elementsString.pop(), elementsString.pop()));
+                        } catch (MalformedProductParameterException e) {
+                            this.logger.log(e.getMessage(), Level.ERROR);
+                        }
                         break;
                     case "Livre":
                         for (String s : bookElements)
                             elementsString.add(product.getElementsByTagName(s).item(0).getTextContent());
-                        this.getEList().add(new Book(elementsString.pop(), elementsString.pop(), elementsString.pop(),
-                                              elementsString.pop(), elementsString.pop(), elementsString.pop(),
-                                              elementsString.pop(), elementsString.pop()));
+                        try {
+                            this.getEList().add(new Book(elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                                  elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                                  elementsString.pop(), elementsString.pop()));
+                        } catch (MalformedCharacterNameParameterException | MalformedProductParameterException e) {
+                            this.logger.log(e.getMessage(), Level.ERROR);
+                        }
                         break;
                     case "DVD":
                         for(String s : dvdElements)
                             elementsString.add(product.getElementsByTagName(s).item(0).getTextContent());
-                        this.getEList().add(new DVD(elementsString.pop(), elementsString.pop(), elementsString.pop(),
-                                              elementsString.pop(), elementsString.pop(), elementsString.pop(),
-                                              elementsString.pop(), elementsString.pop()));
+                        try {
+                            this.getEList().add(new DVD(elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                                  elementsString.pop(), elementsString.pop(), elementsString.pop(),
+                                                  elementsString.pop(), elementsString.pop()));
+                        } catch (MalformedCharacterNameParameterException | MalformedProductParameterException e) {
+                            this.logger.log(e.getMessage(), Level.ERROR);
+                        }
                         break;
                 }
             }

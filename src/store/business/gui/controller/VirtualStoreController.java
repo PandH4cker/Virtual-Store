@@ -100,10 +100,7 @@ public class VirtualStoreController implements Initializable {
      */
     public VirtualStoreController() {
         this.productParser = new ProductParser();
-
-        try { this.clientParser = new ClientParser(); }
-        catch (MalformedClientParameterException e) { this.logger.log(e.getMessage(), Level.ERROR); }
-
+        this.clientParser = new ClientParser();
         this.newClientView = new NewClientView(this.clientParser);
     }
 
@@ -269,12 +266,13 @@ public class VirtualStoreController implements Initializable {
     public void handleSearchByClientAction(MouseEvent event) {
         this.logger.log("Search By Client Event", Level.INFO);
         if(event.getSource() == this.searchByClientButton) {
-            try { this.clientParser = new ClientParser(); }
-            catch (MalformedClientParameterException e) { this.logger.log(e.getMessage(), Level.ERROR); }
-
+            this.clientParser = new ClientParser();
             this.selectedClient = this.clientNameTextField.getText().trim();
             if(this.selectedClient.length() != 0) {
+                if (this.selectedClient.matches("[a-zA-Z]+\\s[a-zA-Z]+\\s[a-zA-Z]+"))
+                    this.selectedClient = this.selectedClient.replaceFirst("\\s", "_");
                 String[] splittedClientName = this.selectedClient.split(" ");
+                splittedClientName[0] = splittedClientName[0].replace("_", " ");
                 Client client = null;
                 if(splittedClientName.length > 1)
                     for(Client c : this.clientParser.getEList()) {

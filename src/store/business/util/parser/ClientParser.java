@@ -35,7 +35,7 @@ public class ClientParser extends Parser<Client> {
      * Inherits the constructor of the {@code public abstract class Parser<E>} class
      * Add elements to the list
      */
-    public ClientParser() throws MalformedClientParameterException {
+    public ClientParser() {
         super(CLIENTS_PATH);
         addEElements();
         this.logger.log("Clients Parsed", Level.INFO);
@@ -45,7 +45,7 @@ public class ClientParser extends Parser<Client> {
      * {@inheritDoc}
      */
     @Override
-    protected void addEElements() throws MalformedClientParameterException {
+    protected void addEElements() {
         final NodeList nodeRoot = this.getRootElement().getChildNodes();
         final int nodeRootLength = nodeRoot.getLength();
         final String[] clientElements = {"name", "surname", "address", "postalCode", "UID"};
@@ -55,9 +55,13 @@ public class ClientParser extends Parser<Client> {
                 final Element client = (Element) nodeRoot.item(i);
                 final LinkedList<String> elementsString = new LinkedList<>();
                 for(String s : clientElements) elementsString.add(client.getElementsByTagName(s).item(0).getTextContent());
-                this.getEList().add(new Client(elementsString.pop(), elementsString.pop(),
-                                               elementsString.pop(), elementsString.pop(),
-                                               Long.parseLong(elementsString.pop())));
+                try {
+                    this.getEList().add(new Client(elementsString.pop(), elementsString.pop(),
+                                                   elementsString.pop(), elementsString.pop(),
+                                                   Long.parseLong(elementsString.pop())));
+                } catch (MalformedClientParameterException e) {
+                    this.logger.log(e.getMessage(), Level.ERROR);
+                }
             }
         }
     }

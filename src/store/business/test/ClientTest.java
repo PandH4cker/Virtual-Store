@@ -23,11 +23,9 @@ class ClientTest {
                                final String address,
                                final String postalCode,
                                final long uniqueID) {
-        try {
-            this.client = new Client(name, surname, address, postalCode, uniqueID);
-        } catch (MalformedClientParameterException e) {
-            e.printStackTrace();
-        }
+        try { this.client = new Client(name, surname, address, postalCode, uniqueID); }
+        catch (MalformedClientParameterException e) { e.printStackTrace(); }
+
         assertAll("Client non conforme",
                     () -> assertEquals(name, this.client.getName()),
                     () -> assertEquals(surname, this.client.getSurname()),
@@ -36,17 +34,15 @@ class ClientTest {
                     () -> assertEquals(uniqueID, this.client.getUniqueID())
         );
 
-        try {
-            this.client2 = new Client(name, surname, address, postalCode);
-        } catch (MalformedClientParameterException e) {
-            e.printStackTrace();
-        }
+        try { this.client2 = new Client(name, surname, address, postalCode); }
+        catch (MalformedClientParameterException e) { e.printStackTrace(); }
+
         assertAll("Client non conforme",
-                () -> assertEquals(name, this.client.getName()),
-                () -> assertEquals(surname, this.client.getSurname()),
-                () -> assertEquals(address, this.client.getAddress()),
-                () -> assertEquals(postalCode, this.client.getPostalCode()),
-                () -> assertEquals(uniqueID, this.client.getUniqueID())
+                () -> assertEquals(name, this.client2.getName()),
+                () -> assertEquals(surname, this.client2.getSurname()),
+                () -> assertEquals(address, this.client2.getAddress()),
+                () -> assertEquals(postalCode, this.client2.getPostalCode()),
+                () -> assertEquals(uniqueID, this.client2.getUniqueID())
         );
 
         assertAll("Client non egaux",
@@ -63,8 +59,7 @@ class ClientTest {
                 ClientTest::executeNameTests,
                 ClientTest::executeSurnameTests,
                 ClientTest::executeAddressTests,
-                ClientTest::executePostalCodeTests,
-                () -> assertDoesNotThrow(() -> new Client("Dray", "Raphael", "19, Boulevard Edouard Branly, Sarcelles", "95200"))
+                ClientTest::executePostalCodeTests
         );
     }
 

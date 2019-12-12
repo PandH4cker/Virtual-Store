@@ -1,10 +1,15 @@
 package store.business.util.product;
 
+import store.business.gui.model.Model;
 import store.business.util.logger.level.Level;
 import store.business.util.product.description.CharacterName;
+import store.business.util.product.description.exception.MalformedCharacterNameParameterException;
+import store.business.util.product.exception.MalformedDVDParameterException;
+import store.business.util.product.exception.MalformedProductParameterException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * <h1>The DVD object</h1>
@@ -23,7 +28,7 @@ import java.util.Collections;
  * @see CharacterName
  * @see DVDGenre
  */
-public class DVD extends Product {
+public class DVD extends Product implements Model<MalformedProductParameterException> {
     private ArrayList<CharacterName> actors;
     private final DVDGenre genre;
     private final int duration;
@@ -46,12 +51,13 @@ public class DVD extends Product {
                final String image,
                ArrayList<CharacterName> actors,
                final DVDGenre genre,
-               final int duration) {
+               final int duration) throws MalformedProductParameterException {
         super(ProductCategory.DVD, title, price, uniqueID, numberLeft, image);
         this.actors = actors;
         Collections.sort(this.actors);
         this.genre = genre;
         this.duration = duration;
+        validate();
         this.logger.log("New DVD Created [" + this + "]", Level.INFO);
     }
 
@@ -62,7 +68,8 @@ public class DVD extends Product {
                final String image,
                String actors,
                final String genre,
-               final String duration) {
+               final String duration)
+            throws MalformedCharacterNameParameterException, MalformedProductParameterException {
         super(ProductCategory.DVD, title, Integer.parseInt(price), Long.parseLong(uniqueID),
               Integer.parseInt(numberLeft), image);
         ArrayList<CharacterName> actorsList = new ArrayList<>();
@@ -74,6 +81,7 @@ public class DVD extends Product {
         Collections.sort(this.actors);
         this.genre = DVDGenre.toDVDGenre(genre);
         this.duration = Integer.parseInt(duration);
+        validate();
         this.logger.log("New DVD Created [" + this + "]", Level.INFO);
     }
 
@@ -113,6 +121,36 @@ public class DVD extends Product {
                +"\n" +this.duration+" minutes"
                +"\n" +this.price+" €"
                +"\n" +this.numberLeft+" restants";
+    }
+
+    @Override
+    public void validate() throws MalformedProductParameterException {
+        super.validate();
+
+        List<String> errors = new ArrayList<>();
+
+        ensureNotNull(this.actors, "Actors is null", errors);
+        boolean passes = ensureNotNull(this.genre, "Genre is null", errors);
+        if (passes) {
+            passes = false;
+            for (DVDGenre dg : DVDGenre.values())
+                if (this.genre.name().equals(dg.name())) {
+                    passes = true;
+                    break;
+                }
+            if (!passes) errors.add("Genre is malformed");
+        }
+
+        passes = ensureNotNull(this.duration, "Duration is null", errors);
+        if (passes)
+            if (this.duration <= 0) errors.add("Duration is malformed");
+
+        if (!errors.isEmpty()) {
+            MalformedDVDParameterException ex = new MalformedDVDParameterException();
+            for (String error : errors)
+                ex.addSuppressed(new MalformedDVDParameterException(error));
+            throw ex;
+        }
     }
 
     /**
