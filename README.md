@@ -11,7 +11,7 @@
 
 ---
 ### UML Diagram:
-<img src="./doc/uml/projectUML.png"
+<img src="./doc/uml/UML_Virtual_Store.jpg"
      alt="Project UML"
      style="float: left; margin-right: 10px"/>
 ---
