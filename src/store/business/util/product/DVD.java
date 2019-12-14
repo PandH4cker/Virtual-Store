@@ -373,7 +373,7 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
                 return false;
             }
         },
-        FANTASY("Fantasy") {
+        FANTASY("Fantaisie") {
             @Override
             public boolean isComedy() {
                 return false;
@@ -524,9 +524,9 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
          * @exception RuntimeException Not genre known
          * @see RuntimeException
          */
-        public static DVDGenre toDVDGenre(String s) {
+        public static DVDGenre toDVDGenre(String s) throws MalformedDVDParameterException {
             for(DVDGenre d : DVDGenre.values()) if(d.toString().equalsIgnoreCase(s)) return d;
-            throw new RuntimeException("Not a genre known");
+            throw new MalformedDVDParameterException("Not a genre known");
         }
 
         public abstract boolean isComedy();

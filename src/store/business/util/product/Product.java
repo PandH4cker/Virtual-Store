@@ -209,7 +209,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
         if (passes)
             if (this.numberLeft < 0) errors.add("Number Left is negative");
 
-        passes = this.imagePath.matches("^(files/resources/image/)([a-zA-Z0-9_\\-]+)\\.(jpg|png)");
+        passes = this.imagePath.matches("^(files/resources/image/)([a-zA-Z0-9_\\-Çç]+)\\.(jpg|png)");
         if(!passes) errors.add("Image Path malformed");
 
         if(!errors.isEmpty()) {

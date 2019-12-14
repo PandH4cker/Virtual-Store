@@ -10,10 +10,8 @@ if exist %java_home% (
         start "java" "%javaExecutablePath%" "-Dfile.encoding=UTF-8" "-classpath" "bin" "store.business.gui.view.VirtualStoreView"
         echo Exiting...
         pause
-        exit
     ) else (
         echo You need to run compile.bat first...
         pause
-        exit
     )
 )
