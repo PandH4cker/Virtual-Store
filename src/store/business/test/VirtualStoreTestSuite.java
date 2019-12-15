@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @SelectClasses({
         ClientTest.class,
         CharacterNameTest.class,
-        BookTest.class
+        BookTest.class,
+        DVDTest.class
 })
 public class VirtualStoreTestSuite {
 }

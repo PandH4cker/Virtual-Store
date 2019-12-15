@@ -1,6 +1,7 @@
 package store.business.test;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import store.business.util.product.DVD;
@@ -30,7 +31,32 @@ public class DVDTest {
         try { this.dvd = new DVD(title, price, uniqueID, numberLeft, image, actors, genre, duration); }
         catch (MalformedCharacterNameParameterException | MalformedProductParameterException e) { e.printStackTrace(); }
 
-        assertAll("DVD non conforme",
+        populateTests(title, price, uniqueID, numberLeft, image, actors, genre, duration);
+    }
+
+    private void populateTests(String title, String price, String uniqueID, String numberLeft, String image, String actors, String genre, String duration) {
+        assertAll("DVD non conforme", executeConformityTests(title, price, uniqueID, numberLeft, image, actors, genre, duration));
+
+        assertEquals(this.dvd.getName()
+                +"\n" +this.dvd.getActors()
+                +"\n" +this.dvd.getDuration()+" minutes"
+                +"\n" +this.dvd.getPrice()+" €"
+                +"\n" +this.dvd.getNumberLeft()+" restants", this.dvd.toString());
+
+        assertAll("Données DVD non conformes",
+                DVDTest::executeTitleTests,
+                DVDTest::executePriceTests,
+                DVDTest::executeUIDTests,
+                DVDTest::executeNumberLeftTests,
+                DVDTest::executeImagePathTests,
+                DVDTest::executeActorsTests,
+                DVDTest::executeGenreTests,
+                DVDTest::executeDurationTests
+        );
+    }
+
+    private Executable[] executeConformityTests(String title, String price, String uniqueID, String numberLeft, String image, String actors, String genre, String duration) {
+        return new Executable[]{
                 () -> assertEquals(title, this.dvd.getName()),
                 () -> assertEquals(price, String.valueOf(this.dvd.getPrice())),
                 () -> assertEquals(uniqueID, String.valueOf(this.dvd.getUniqueID())),
@@ -51,24 +77,7 @@ public class DVDTest {
                 },
                 () -> assertEquals(genre, this.dvd.getGenre().toString()),
                 () -> assertEquals(duration, String.valueOf(this.dvd.getDuration()))
-        );
-
-        assertEquals(this.dvd.getName()
-                +"\n" +this.dvd.getActors()
-                +"\n" +this.dvd.getDuration()+" minutes"
-                +"\n" +this.dvd.getPrice()+" €"
-                +"\n" +this.dvd.getNumberLeft()+" restants", this.dvd.toString());
-
-        assertAll("Données DVD non conformes",
-                DVDTest::executeTitleTests,
-                DVDTest::executePriceTests,
-                DVDTest::executeUIDTests,
-                DVDTest::executeNumberLeftTests,
-                DVDTest::executeImagePathTests,
-                DVDTest::executeActorsTests,
-                DVDTest::executeGenreTests,
-                DVDTest::executeDurationTests
-        );
+        };
     }
 
     static List<Object[]> getDataForConstructor() {

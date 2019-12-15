@@ -1,6 +1,7 @@
 package store.business.test;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import store.business.util.client.Client;
@@ -26,25 +27,17 @@ class ClientTest {
         try { this.client = new Client(name, surname, address, postalCode, uniqueID); }
         catch (MalformedClientParameterException e) { e.printStackTrace(); }
 
-        assertAll("Client non conforme",
-                    () -> assertEquals(name, this.client.getName()),
-                    () -> assertEquals(surname, this.client.getSurname()),
-                    () -> assertEquals(address, this.client.getAddress()),
-                    () -> assertEquals(postalCode, this.client.getPostalCode()),
-                    () -> assertEquals(uniqueID, this.client.getUniqueID())
-        );
+        assertAll("Client non conforme", executeConformityTests(this.client,name, surname, address, postalCode, uniqueID));
 
         try { this.client2 = new Client(name, surname, address, postalCode); }
         catch (MalformedClientParameterException e) { e.printStackTrace(); }
 
-        assertAll("Client non conforme",
-                () -> assertEquals(name, this.client2.getName()),
-                () -> assertEquals(surname, this.client2.getSurname()),
-                () -> assertEquals(address, this.client2.getAddress()),
-                () -> assertEquals(postalCode, this.client2.getPostalCode()),
-                () -> assertEquals(uniqueID, this.client2.getUniqueID())
-        );
+        assertAll("Client non conforme", executeConformityTests(this.client2,name, surname, address, postalCode, uniqueID));
 
+        populateTests();
+    }
+
+    private void populateTests() {
         assertAll("Client non egaux",
                 () -> assertEquals(this.client, this.client),
                 () -> assertEquals(this.client, this.client2)
@@ -61,6 +54,16 @@ class ClientTest {
                 ClientTest::executeAddressTests,
                 ClientTest::executePostalCodeTests
         );
+    }
+
+    private Executable[] executeConformityTests(Client client,String name, String surname, String address, String postalCode, long uniqueID) {
+        return new Executable[]{
+                () -> assertEquals(name, client.getName()),
+                () -> assertEquals(surname, client.getSurname()),
+                () -> assertEquals(address, client.getAddress()),
+                () -> assertEquals(postalCode, client.getPostalCode()),
+                () -> assertEquals(uniqueID, client.getUniqueID())
+        };
     }
 
     static List<Object[]> getDataForConstructor() {
