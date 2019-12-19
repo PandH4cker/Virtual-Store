@@ -367,16 +367,6 @@ public class DVDTest {
                                 "Bill Skarsgard,Jaeden Lieberher,Finn Wolfhard,Jack Dylan Grazer,Sophia Lillis",
                                 "qzegreqagr",
                                 "128")
-                ),
-                () -> assertThrows(MalformedProductParameterException.class, () ->
-                        new DVD("Ça",
-                                "13",
-                                "660775668448474",
-                                "100",
-                                "files/resources/image/Ça.jpg",
-                                "Bill Skarsgard,Jaeden Lieberher,Finn Wolfhard,Jack Dylan Grazer,Sophia Lillis",
-                                "qzegreqagr",
-                                "128")
                 )
         );
     }

@@ -3,6 +3,7 @@ package store.business.test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import store.business.util.product.description.CharacterName;
 import store.business.util.product.description.exception.MalformedCharacterNameParameterException;
 
@@ -32,13 +33,11 @@ public class CharacterNameTest {
     void characterNameConstructorTest() {
         CharacterName first = characterNames.get(0);
 
-        assertAll("Le comparable est non conforme",
-                () -> assertEquals(0, first.compareTo(new CharacterName("Dray", "Raphael"))),
-                () -> {
-                    Collections.shuffle(characterNames);
-                    assertNotEquals(first, characterNames.get(0));
-                }
-        );
+        populateTests(first);
+    }
+
+    private void populateTests(CharacterName first) {
+        assertAll("Le comparable est non conforme", executeComparaisonTests(first));
 
         assertEquals(first.getName() + " " + first.getSurname(), first.toString());
 
@@ -46,6 +45,14 @@ public class CharacterNameTest {
                 CharacterNameTest::executeNameTests,
                 CharacterNameTest::executeSurnameTests
         );
+    }
+
+    private Executable[] executeComparaisonTests(CharacterName first) {
+        return new Executable[]{() -> assertEquals(0, first.compareTo(new CharacterName("Dray", "Raphael"))),
+                () -> {
+                    Collections.shuffle(characterNames);
+                    assertNotEquals(first, characterNames.get(0));
+                }};
     }
 
     private static void executeNameTests() {

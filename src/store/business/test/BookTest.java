@@ -1,6 +1,7 @@
 package store.business.test;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import store.business.util.product.Book;
@@ -31,16 +32,11 @@ class BookTest {
         try { this.book = new Book(title, price, uniqueID, numberLeft, image, author, language, numberOfPages); }
         catch (MalformedCharacterNameParameterException | MalformedProductParameterException e) { e.printStackTrace(); }
 
-        assertAll("Livre non conforme",
-                () -> assertEquals(title, this.book.getName()),
-                () -> assertEquals(Integer.parseInt(price), this.book.getPrice()),
-                () -> assertEquals(Long.parseLong(uniqueID), this.book.getUniqueID()),
-                () -> assertEquals(Integer.parseInt(numberLeft), this.book.getNumberLeft()),
-                () -> assertEquals(image, this.book.getImagePath()),
-                () -> assertEquals(author, this.book.getAuthor().toString()),
-                () -> assertEquals(language, this.book.getLanguage().toString()),
-                () -> assertEquals(Integer.parseInt(numberOfPages), this.book.getNumberOfPages())
-        );
+        populateTests(title, price, uniqueID, numberLeft, image, author, language, numberOfPages);
+    }
+
+    private void populateTests(String title, String price, String uniqueID, String numberLeft, String image, String author, String language, String numberOfPages) {
+        assertAll("Livre non conforme", executeConformityTests(title, price, uniqueID, numberLeft, image, author, language, numberOfPages));
 
         assertEquals(this.book.getName()
                 +"\n" +this.book.getAuthor()
@@ -59,6 +55,17 @@ class BookTest {
                 BookTest::executeLanguageTests,
                 BookTest::executeNumberOfPagesTests
         );
+    }
+
+    private Executable[] executeConformityTests(String title, String price, String uniqueID, String numberLeft, String image, String author, String language, String numberOfPages) {
+        return new Executable[]{() -> assertEquals(title, this.book.getName()),
+                () -> assertEquals(Integer.parseInt(price), this.book.getPrice()),
+                () -> assertEquals(Long.parseLong(uniqueID), this.book.getUniqueID()),
+                () -> assertEquals(Integer.parseInt(numberLeft), this.book.getNumberLeft()),
+                () -> assertEquals(image, this.book.getImagePath()),
+                () -> assertEquals(author, this.book.getAuthor().toString()),
+                () -> assertEquals(language, this.book.getLanguage().toString()),
+                () -> assertEquals(Integer.parseInt(numberOfPages), this.book.getNumberOfPages())};
     }
 
     static List<Object[]> getDataForConstructor() {

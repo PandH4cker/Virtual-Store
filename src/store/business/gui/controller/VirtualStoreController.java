@@ -19,6 +19,7 @@ import store.business.util.parser.ProductParser;
 import store.business.util.product.*;
 import store.business.util.product.exception.NoMoreOfThisProductException;
 import store.business.util.transaction.Transaction;
+import store.business.util.transaction.exception.MalformedTransactionParameterException;
 import store.business.util.writer.TransactionWriter;
 
 import java.io.FileInputStream;
@@ -330,7 +331,7 @@ public class VirtualStoreController implements Initializable {
                                                 this.product.getUniqueID(),
                                                 this.selectedAmount,
                                                 new Date()));
-                    } catch (NoMoreOfThisProductException e) {
+                    } catch (NoMoreOfThisProductException | MalformedTransactionParameterException e) {
                         this.logger.log(e.getMessage(), Level.WARNING);
                     }
                     clearFields();

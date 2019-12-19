@@ -1,11 +1,16 @@
 package store.business.util.transaction;
 
+import store.business.gui.model.Model;
 import store.business.util.logger.level.Level;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
+import store.business.util.transaction.exception.MalformedTransactionParameterException;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <h1>The transaction object</h1>
@@ -24,7 +29,7 @@ import java.util.Date;
  * @see Date
  * @see SimpleDateFormat
  */
-public class Transaction {
+public class Transaction implements Model<MalformedTransactionParameterException> {
     private final Logger logger = LoggerFactory.getLogger("Transaction");
     private final long clientUID;
     private final long productUID;
@@ -46,11 +51,12 @@ public class Transaction {
     public Transaction(final long clientUID,
                        final long productUID,
                        final int numberOfProduct,
-                       final Date transactionDate) {
+                       final Date transactionDate) throws MalformedTransactionParameterException {
         this.clientUID = clientUID;
         this.productUID = productUID;
         this.numberOfProduct = numberOfProduct;
         this.transactionDate = transactionDate;
+        validate();
         this.logger.log("New Transaction [" + this + "]", Level.INFO);
     }
 
@@ -99,5 +105,41 @@ public class Transaction {
                +"\n UID Product: " +this.productUID
                +"\n UID Client: " +this.clientUID
                +"\n Amount: " +this.numberOfProduct;
+    }
+
+    @Override
+    public void validate() throws MalformedTransactionParameterException {
+        List<String> errors = new ArrayList<>();
+
+        boolean passes = ensureNotNull(this.clientUID, "Client UID is null", errors);
+        if(passes)
+            if(this.clientUID < 0) errors.add("Client UID is negative");
+
+        passes = ensureNotNull(this.productUID, "Product UID is null", errors);
+        if(passes)
+            if(this.productUID < 0) errors.add("Product UID is negative");
+
+        passes = ensureNotNull(this.numberOfProduct, "Number of Product is null", errors);
+        if(passes)
+            if(this.numberOfProduct <= 0 || this.numberOfProduct > 100) errors.add("Number of Product mismatches the interval");
+
+        passes = ensureNotNull(this.transactionDate, "Transaction date is null", errors);
+        if(passes) {
+            try {
+                Date START = DATE_FORMAT.parse("1900-01-01 00:00:00");
+                Date END = DATE_FORMAT.parse("2099-12-31 00:00:00");
+                if(this.transactionDate.before(START) || this.transactionDate.after(END))
+                    errors.add("Transactio date is outside the normal range: " + START + ".." + END);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(!errors.isEmpty()) {
+            MalformedTransactionParameterException ex = new MalformedTransactionParameterException();
+            for (String error : errors)
+                ex.addSuppressed(new MalformedTransactionParameterException(error));
+            throw ex;
+        }
     }
 }

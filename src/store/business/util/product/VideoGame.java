@@ -361,9 +361,9 @@ public class VideoGame extends Product {
          * @exception RuntimeException Not a genre known
          * @see RuntimeException
          */
-        public static VideoGameGenre toVideoGameGenre(String s) {
+        public static VideoGameGenre toVideoGameGenre(String s) throws MalformedVideoGameParameterException {
             for(VideoGameGenre g : VideoGameGenre.values()) if(g.toString().equalsIgnoreCase(s)) return g;
-            throw new RuntimeException("Not a genre known");
+            throw new MalformedVideoGameParameterException("Not a genre known");
         }
 
         public abstract boolean isArcade();
@@ -497,9 +497,9 @@ public class VideoGame extends Product {
          * @exception RuntimeException Not a platform known
          * @see RuntimeException
          */
-        public static VideoGamePlatform toVideoGamePlatform(String s) {
+        public static VideoGamePlatform toVideoGamePlatform(String s) throws MalformedVideoGameParameterException {
             for(VideoGamePlatform p : VideoGamePlatform.values()) if(p.toString().equalsIgnoreCase(s)) return p;
-            throw new RuntimeException("Not a platform known");
+            throw new MalformedVideoGameParameterException("Not a platform known");
         }
 
         public abstract boolean isNintendo();

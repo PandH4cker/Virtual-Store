@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
         ClientTest.class,
         CharacterNameTest.class,
         BookTest.class,
-        DVDTest.class
+        DVDTest.class,
+        VideoGameTest.class
 })
 public class VirtualStoreTestSuite {
 }
