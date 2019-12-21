@@ -50,7 +50,7 @@ public class CharacterNameTest {
     private Executable[] executeComparaisonTests(CharacterName first) {
         return new Executable[]{() -> assertEquals(0, first.compareTo(new CharacterName("Dray", "Raphael"))),
                 () -> {
-                    Collections.shuffle(characterNames);
+                    Collections.sort(characterNames);
                     assertNotEquals(first, characterNames.get(0));
                 }};
     }
