@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
  *     {@code public interface Initializable} interface in order to unfocus all the components
  *     of the view and to add a listener on each Input Text to disable/enable the submit button
  * </p>
+ * <img src="../../../../uml/NewClientControllerDiagram.jpg" />
  *
  * @author Dray Raphael
  * @version 1.0.0

@@ -19,7 +19,8 @@ import java.nio.file.Paths;
  *     write a transaction into a XML file.
  *     It inherits of the {@code public abstract class Write<E>} class
  * </p>
- * <img src="../../../../uml/TransactionWriter.png" />
+ * <img src="../../../../uml/TransactionWriterDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -36,7 +37,7 @@ public class TransactionWriter extends Writer<Transaction> {
 
     /**
      * Write the transaction into the XML file
-     * @param transaction Transaction The transaction to write
+     * @param transaction The transaction to write
      */
     public TransactionWriter(final Transaction transaction) {
         super(TRANSACTION_PATH);
@@ -46,7 +47,7 @@ public class TransactionWriter extends Writer<Transaction> {
 
     /**
      * Write elements into the XML file
-     * @param t Transaction The transaction to write
+     * @param t The transaction to write
      * @see Override
      * @see Transaction
      * @see Element

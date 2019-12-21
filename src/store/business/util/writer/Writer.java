@@ -19,7 +19,8 @@ import java.nio.file.Path;
  *     <li>A document</li>
  *     <li>An root element</li>
  * </p>
- * <img src="../../../../uml/Writer.png" />
+ * <img src="../../../../uml/WriterDiagram.jpg" />
+ *
  * @param <E> E The generic type of the writer object
  * @author Raphael Dray
  * @version 1.0.0
@@ -38,7 +39,7 @@ public abstract class Writer<E> {
 
     /**
      * Create a document and get the root element from a XML file
-     * @param E_PATH Path The XML file path
+     * @param E_PATH The XML file path
      * @see Path
      */
     protected Writer(final Path E_PATH) {
@@ -49,7 +50,7 @@ public abstract class Writer<E> {
 
     /**
      * Create a document from a XML file
-     * @return Document The document
+     * @return Document - The document
      * @see Document
      * @see DocumentBuilderFactory
      * @exception ParserConfigurationException Bad Parsing Configuration
@@ -74,7 +75,7 @@ public abstract class Writer<E> {
 
     /**
      * Getter of the root element
-     * @return Element The root element
+     * @return Element - The root element
      * @see Element
      */
     protected Element getRootElement() {
@@ -84,7 +85,7 @@ public abstract class Writer<E> {
     /**
      * Abstract method to write elements into the XML file
      * Need to be implemented
-     * @param e E The object to write
+     * @param e The object to write
      * @see E
      */
     protected abstract void writeElements(E e);

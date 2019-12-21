@@ -20,7 +20,8 @@ import java.util.ArrayList;
  *     Prepare the XML document and
  *     get the root of it from a file path
  * </p>
- * <img src="../../../../uml/Parser.png" />
+ * <img src="../../../../uml/ParserDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -53,7 +54,7 @@ public abstract class Parser<E> {
 
     /**
      * Create a document from a file path in order to parse it
-     * @return Document The document from the file path
+     * @return Document - The document from the file path
      * @see Document
      * @see DocumentBuilderFactory
      * @see ParserConfigurationException
@@ -78,7 +79,7 @@ public abstract class Parser<E> {
 
     /**
      * Getter of the root of the XML file
-     * @return Element The root of the XML file
+     * @return Element - The root of the XML file
      * @see Element
      */
     protected Element getRootElement() {
@@ -87,7 +88,7 @@ public abstract class Parser<E> {
 
     /**
      * Getter of the list of E
-     * @return ArrayList<E> The list of E
+     * @return ArrayList<E> - The list of E
      * @see E
      */
     public ArrayList<E> getEList() {

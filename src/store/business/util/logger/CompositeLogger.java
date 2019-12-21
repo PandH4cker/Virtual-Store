@@ -10,7 +10,8 @@ import store.business.util.logger.level.Level;
  *     <li>A file logger</li>
  *     It implements the {@code public interface Logger} interface.
  * </p>
- * <img src="../../../../uml/CompositeLogger.png" />
+ * <img src="../../../../uml/CompositeLoggerDiagram.jpg" />
+ *
  * @author Dray Raphael
  * @version 1.0.0
  * @since 1.0.0

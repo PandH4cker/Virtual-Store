@@ -20,7 +20,8 @@ import java.util.List;
  *     <li>A duration</li>
  *     It inherits of the {@code public abstract class Product} class
  * </p>
- * <img src="../../../../uml/DVD.png" />
+ * <img src="../../../../uml/DVDDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -35,14 +36,15 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
 
     /**
      * Initializes the DVDs' attributes
-     * @param title String The title of the DVD
-     * @param price String The price of the DVD
-     * @param uniqueID Long The UID of the DVD
-     * @param numberLeft int The number in the stock of this DVD
-     * @param image String The image path of the DVD
-     * @param actors ArrayList<CharacterName> The list of the actors of this DVD
-     * @param genre DVDGenre The genre of this DVD
-     * @param duration int The duration of the DVD
+     * @param title The title of the DVD
+     * @param price The price of the DVD
+     * @param uniqueID The UID of the DVD
+     * @param numberLeft The number in the stock of this DVD
+     * @param image The image path of the DVD
+     * @param actors The list of the actors of this DVD
+     * @param genre The genre of this DVD
+     * @param duration The duration of the DVD
+     * @throws MalformedProductParameterException In case of product is malformed
      */
     public DVD(final String title,
                final int price,
@@ -87,7 +89,7 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
 
     /**
      * Getter of the list of the actors
-     * @return ArrayList<CharacterName> The list of actors of the DVD
+     * @return ArrayList<CharacterName> - The list of actors of the DVD
      */
     public ArrayList<CharacterName> getActors() {
         return this.actors;
@@ -95,7 +97,7 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
 
     /**
      * Getter of the genre
-     * @return DVDGenre The genre of the DVD
+     * @return DVDGenre - The genre of the DVD
      */
     public DVDGenre getGenre() {
         return this.genre;
@@ -103,7 +105,7 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
 
     /**
      * Getter of the duration
-     * @return int The duration of the DVD
+     * @return int - The duration of the DVD
      */
     public int getDuration() {
         return this.duration;
@@ -111,7 +113,7 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
 
     /**
      * Overriding toString method of the Object class
-     * @return String The description of the DVD
+     * @return String - The description of the DVD
      * @see Override
      */
     @Override
@@ -123,6 +125,11 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
                +"\n" +this.numberLeft+" restants";
     }
 
+    /**
+     * {@inheritDoc}
+     * @throws MalformedProductParameterException
+     * @see Override
+     */
     @Override
     public void validate() throws MalformedProductParameterException {
         super.validate();
@@ -501,7 +508,7 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
 
         /**
          * Initialize the genre name of the DVD
-         * @param genreName String The genre name of the DVD
+         * @param genreName The genre name of the DVD
          */
         DVDGenre(final String genreName) {
             this.genreName = genreName;
@@ -509,7 +516,7 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
 
         /**
          * Overriding toString method of the Object class
-         * @return String The genre name
+         * @return String - The genre name
          * @see Override
          */
         @Override
@@ -519,10 +526,10 @@ public class DVD extends Product implements Model<MalformedProductParameterExcep
 
         /**
          * Convert string genre name to a DVD genre enum value
-         * @param s String The genre name
-         * @return DVDGenre The DVDGenre value from the string
-         * @exception RuntimeException Not genre known
-         * @see RuntimeException
+         * @param s The genre name
+         * @return DVDGenre - The DVDGenre value from the string
+         * @exception MalformedDVDParameterException Not genre known
+         * @see MalformedDVDParameterException
          */
         public static DVDGenre toDVDGenre(String s) throws MalformedDVDParameterException {
             for(DVDGenre d : DVDGenre.values()) if(d.toString().equalsIgnoreCase(s)) return d;

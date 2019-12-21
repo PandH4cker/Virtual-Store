@@ -25,6 +25,8 @@ import java.nio.file.Paths;
  *     It sets a locker in order to we can't start a second
  *     instance of this view at the same time.
  * </p>
+ * <img src="../../../../uml/NewClientViewDiagram.jpg" />
+ *
  * @author Dray Raphael
  * @version 1.0.0
  * @since 1.0.0

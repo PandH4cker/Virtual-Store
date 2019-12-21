@@ -12,7 +12,8 @@ import java.util.Date;
  *     Logs the messages with a format.
  *     It implements the {@code public interface Logger} interface.
  * </p>
- * <img src="../../../../uml/ContextualLogger.png" />
+ * <img src="../../../../uml/ContextualLoggerDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

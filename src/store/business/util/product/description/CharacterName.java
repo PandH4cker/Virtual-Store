@@ -13,7 +13,8 @@ import java.util.List;
  *     It implements the {@code public interface Comparable<E>} interface
  *     It means that the class can be compared to another object of the same class
  * </p>
- * <img src="../../../../../uml/CharacterName.png" />
+ * <img src="../../../../../uml/CharacterNameDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -43,7 +44,7 @@ public class CharacterName implements Comparable<CharacterName>, Model<Malformed
 
     /**
      * Getter of the name
-     * @return String The name of the actor
+     * @return String - The name of the actor
      */
     public String getName() {
         return this.name;
@@ -51,7 +52,7 @@ public class CharacterName implements Comparable<CharacterName>, Model<Malformed
 
     /**
      * Getter of the surname
-     * @return String The surname of the actor
+     * @return String - The surname of the actor
      */
     public String getSurname() {
         return this.surname;
@@ -75,7 +76,7 @@ public class CharacterName implements Comparable<CharacterName>, Model<Malformed
 
     /**
      * Overriding of the toString method from the Object class
-     * @return String The name and the surname
+     * @return String - The name and the surname
      * @see Override
      */
     @Override
@@ -83,6 +84,10 @@ public class CharacterName implements Comparable<CharacterName>, Model<Malformed
         return this.name + " " + this.surname;
     }
 
+    /**
+     * {@inheritDoc}
+     * @throws MalformedCharacterNameParameterException
+     */
     @Override
     public void validate() throws MalformedCharacterNameParameterException {
         List<String> errors = new ArrayList<>();

@@ -19,7 +19,8 @@ import java.util.List;
  *     <li>A number of pages</li>
  *     It inherits of the {@code public abstract class Product} class
  * </p>
- * <img src="../../../../uml/Book.png" />
+ * <img src="../../../../uml/BookDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -34,16 +35,17 @@ public class Book extends Product implements Model<MalformedProductParameterExce
 
     /**
      * Initialize the books' attributes
-     * @param title String The title of the book
-     * @param price int The price of the book
-     * @param uniqueID long The UID of the book (ISBN)
-     * @param numberLeft int The number in the stock of this book
-     * @param image String The image path of the book
-     * @param author CharacterName The author of the book
-     * @param language LanguageBook The language of the book
-     * @param numberOfPages int The number of pages of the book
+     * @param title The title of the book
+     * @param price The price of the book
+     * @param uniqueID The UID of the book (ISBN)
+     * @param numberLeft The number in the stock of this book
+     * @param image The image path of the book
+     * @param author The author of the book
+     * @param language The language of the book
+     * @param numberOfPages The number of pages of the book
      * @see CharacterName
      * @see LanguageBook
+     * @throws MalformedProductParameterException In case of the product is malformed
      */
     public Book(final String title,
                 final int price,
@@ -82,7 +84,7 @@ public class Book extends Product implements Model<MalformedProductParameterExce
 
     /**
      * Getter of the author
-     * @return CharacterName The author of the book
+     * @return CharacterName - The author of the book
      * @see CharacterName
      */
     public CharacterName getAuthor() {
@@ -91,7 +93,7 @@ public class Book extends Product implements Model<MalformedProductParameterExce
 
     /**
      * Getter of the number of pages
-     * @return int The number of pages
+     * @return int - The number of pages
      */
     public int getNumberOfPages() {
         return this.numberOfPages;
@@ -99,7 +101,7 @@ public class Book extends Product implements Model<MalformedProductParameterExce
 
     /**
      * Getter of the language
-     * @return LanguageBook The language of the book
+     * @return LanguageBook - The language of the book
      * @see LanguageBook
      */
     public LanguageBook getLanguage() {
@@ -108,7 +110,8 @@ public class Book extends Product implements Model<MalformedProductParameterExce
 
     /**
      * Overriding the toString method of the Object class
-     * @return String The description of the book
+     * @return String - The description of the book
+     * @see Override
      */
     @Override
     public String toString() {
@@ -120,6 +123,10 @@ public class Book extends Product implements Model<MalformedProductParameterExce
                 +"\n" +this.numberLeft+" restants";
     }
 
+    /**
+     * {@inheritDoc}
+     * @throws MalformedProductParameterException
+     */
     @Override
     public void validate() throws MalformedProductParameterException {
         super.validate();
@@ -297,7 +304,7 @@ public class Book extends Product implements Model<MalformedProductParameterExce
 
         /**
          * Initialize the language name of the book
-         * @param languageName String The language of the book
+         * @param languageName The language of the book
          */
         LanguageBook(final String languageName) {
             this.languageName = languageName;
@@ -305,7 +312,8 @@ public class Book extends Product implements Model<MalformedProductParameterExce
 
         /**
          * Overriding toString method of Object class
-         * @return String The language name
+         * @return String - The language name
+         * @see Override
          */
         @Override
         public String toString() {
@@ -314,10 +322,10 @@ public class Book extends Product implements Model<MalformedProductParameterExce
 
         /**
          * Convert string language name to a language book enum value
-         * @param s String The language name of the language enum
-         * @return LanguageBook The LanguageBook value from the string
-         * @exception RuntimeException Not a language known
-         * @see RuntimeException
+         * @param s The language name of the language enum
+         * @return LanguageBook - The LanguageBook value from the string
+         * @exception MalformedBookParameterException Not a language known
+         * @see MalformedBookParameterException
          */
         public static LanguageBook toLanguageBook(String s) throws MalformedBookParameterException {
             for(LanguageBook l : LanguageBook.values()) if(l.toString().equalsIgnoreCase(s)) return l;

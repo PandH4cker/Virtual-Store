@@ -11,6 +11,8 @@ package store.business.util.logger.color;
  *     <li>YELLOW - <b>used to the class name in logs messages</b></li>
  *     <li>MAGENTA - <b>used to the warning level logger</b></li>
  * </p>
+ * <img src="../../../../uml/ColorDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -37,7 +39,7 @@ public enum Color {
 
     /**
      * Overriding toString method from the Object class
-     * @return String The code of the color
+     * @return String - The code of the color
      * @see Override
      */
     @Override

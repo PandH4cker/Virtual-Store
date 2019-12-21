@@ -21,7 +21,8 @@ import java.util.List;
  *     <li>A number of product</li>
  *     <li>A date</li>
  * </p>
- * <img src="../../../../uml/Transaction.png" />
+ * <img src="../../../../uml/TransactionDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -43,10 +44,10 @@ public class Transaction implements Model<MalformedTransactionParameterException
 
     /**
      * Initializes the transactions' attributes
-     * @param clientUID long The client UID of the transaction
-     * @param productUID long The product UID of the transaction
-     * @param numberOfProduct int The number of product of the transaction
-     * @param transactionDate Date The date of the transaction
+     * @param clientUID The client UID of the transaction
+     * @param productUID The product UID of the transaction
+     * @param numberOfProduct The number of product of the transaction
+     * @param transactionDate The date of the transaction
      */
     public Transaction(final long clientUID,
                        final long productUID,
@@ -62,7 +63,7 @@ public class Transaction implements Model<MalformedTransactionParameterException
 
     /**
      * Getter of the client UID
-     * @return long The client UID of the transaction
+     * @return long - The client UID of the transaction
      */
     public long getClientUID() {
         return this.clientUID;
@@ -70,7 +71,7 @@ public class Transaction implements Model<MalformedTransactionParameterException
 
     /**
      * Getter of the product UID
-     * @return long The product UID of the transaction
+     * @return long - The product UID of the transaction
      */
     public long getProductUID() {
         return this.productUID;
@@ -78,7 +79,7 @@ public class Transaction implements Model<MalformedTransactionParameterException
 
     /**
      * Getter of the number of product
-     * @return int The number of product of the transaction
+     * @return int - The number of product of the transaction
      */
     public int getNumberOfProduct() {
         return this.numberOfProduct;
@@ -86,7 +87,7 @@ public class Transaction implements Model<MalformedTransactionParameterException
 
     /**
      * Getter of the formatted date of the transaction
-     * @return String The formatted date of the transaction
+     * @return String - The formatted date of the transaction
      * @see SimpleDateFormat
      */
     public String getTransactionDate() {
@@ -95,7 +96,7 @@ public class Transaction implements Model<MalformedTransactionParameterException
 
     /**
      * Overriding toString method of the Object class
-     * @return String The description of the transaction
+     * @return String - The description of the transaction
      * @see Override
      * @see SimpleDateFormat
      */
@@ -107,6 +108,10 @@ public class Transaction implements Model<MalformedTransactionParameterException
                +"\n Amount: " +this.numberOfProduct;
     }
 
+    /**
+     * {@inheritDoc}
+     * @throws MalformedTransactionParameterException
+     */
     @Override
     public void validate() throws MalformedTransactionParameterException {
         List<String> errors = new ArrayList<>();

@@ -15,7 +15,8 @@ import java.util.List;
  *     <li>A platform</li>
  *     It inherits of the {@code public abstract class Product} class
  * </p>
- * <img src="../../../../uml/VideoGame.png" />
+ * <img src="../../../../uml/VideoGameDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -29,13 +30,13 @@ public class VideoGame extends Product {
 
     /**
      * Initializes the Video games' attributes
-     * @param title String The title of the Video Game
-     * @param price int The price of the Video Game
-     * @param uniqueID long The UID of the Video Game
-     * @param numberLeft int The number left in the stock of the Video Game
-     * @param image String The image path of the Video Game
-     * @param genre VideoGameGenre The genre of the Video Game
-     * @param platform VideoGamePlatform The platform of the Video Game
+     * @param title The title of the Video Game
+     * @param price The price of the Video Game
+     * @param uniqueID The UID of the Video Game
+     * @param numberLeft The number left in the stock of the Video Game
+     * @param image The image path of the Video Game
+     * @param genre The genre of the Video Game
+     * @param platform The platform of the Video Game
      * @see VideoGameGenre
      * @see VideoGamePlatform
      */
@@ -70,7 +71,7 @@ public class VideoGame extends Product {
 
     /**
      * Getter of the genre
-     * @return VideoGameGenre The genre of the Video Game
+     * @return VideoGameGenre - The genre of the Video Game
      * @see VideoGameGenre
      */
     public VideoGameGenre getGenre() {
@@ -79,7 +80,7 @@ public class VideoGame extends Product {
 
     /**
      * Getter of the platform
-     * @return VideoGamePlatform The platform of the Video Game
+     * @return VideoGamePlatform - The platform of the Video Game
      * @see VideoGamePlatform
      */
     public VideoGamePlatform getPlatform() {
@@ -88,7 +89,7 @@ public class VideoGame extends Product {
 
     /**
      * Overriding the toString method of the Object class
-     * @return String The description of the Video Game
+     * @return String - The description of the Video Game
      */
     @Override
     public String toString() {
@@ -99,6 +100,10 @@ public class VideoGame extends Product {
                 +"\n" +this.numberLeft+" restants";
     }
 
+    /**
+     * {@inheritDoc}
+     * @throws MalformedProductParameterException
+     */
     @Override
     public void validate() throws MalformedProductParameterException {
         super.validate();
@@ -339,7 +344,7 @@ public class VideoGame extends Product {
 
         /**
          * Initialize the genre name of the Video Game
-         * @param genreName String The genre name of the Video Game
+         * @param genreName The genre name of the Video Game
          */
         VideoGameGenre(final String genreName) {
             this.genreName = genreName;
@@ -347,7 +352,7 @@ public class VideoGame extends Product {
 
         /**
          * Overriding the toString method of the Object class
-         * @return String The genre name of the Video Game
+         * @return String - The genre name of the Video Game
          */
         @Override
         public String toString() {
@@ -356,10 +361,10 @@ public class VideoGame extends Product {
 
         /**
          * Convert string genre name to a Video Game genre value
-         * @param s String The genre name
-         * @return VideoGameGenre The VideoGameGenre value from the string
-         * @exception RuntimeException Not a genre known
-         * @see RuntimeException
+         * @param s The genre name
+         * @return VideoGameGenre - The VideoGameGenre value from the string
+         * @exception MalformedVideoGameParameterException Not a genre known
+         * @see MalformedVideoGameParameterException
          */
         public static VideoGameGenre toVideoGameGenre(String s) throws MalformedVideoGameParameterException {
             for(VideoGameGenre g : VideoGameGenre.values()) if(g.toString().equalsIgnoreCase(s)) return g;
@@ -474,7 +479,7 @@ public class VideoGame extends Product {
 
         /**
          * Initializes the platform name of the Video Game
-         * @param platformName String The platform name of the Video Game
+         * @param platformName The platform name of the Video Game
          */
         VideoGamePlatform(final String platformName) {
             this.platformName = platformName;
@@ -482,7 +487,7 @@ public class VideoGame extends Product {
 
         /**
          * Overriding the toString method of the Object class
-         * @return String The platform name of the Video Game
+         * @return String - The platform name of the Video Game
          * @see Override
          */
         @Override
@@ -492,10 +497,10 @@ public class VideoGame extends Product {
 
         /**
          * Convert string platform name to a Video Game platform enum value
-         * @param s String The platform name
-         * @return VideoGamePlatform The VideoGamePlatform value from the string
-         * @exception RuntimeException Not a platform known
-         * @see RuntimeException
+         * @param s The platform name
+         * @return VideoGamePlatform - The VideoGamePlatform value from the string
+         * @exception MalformedVideoGameParameterException Not a platform known
+         * @see MalformedVideoGameParameterException
          */
         public static VideoGamePlatform toVideoGamePlatform(String s) throws MalformedVideoGameParameterException {
             for(VideoGamePlatform p : VideoGamePlatform.values()) if(p.toString().equalsIgnoreCase(s)) return p;

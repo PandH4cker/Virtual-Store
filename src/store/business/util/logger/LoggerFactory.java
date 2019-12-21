@@ -7,7 +7,8 @@ import store.business.util.logger.level.Level;
  * <p>
  *     Used to get an instance of a logger
  * </p>
- * <img src="../../../../uml/LoggerFactory.png" />
+ * <img src="../../../../uml/LoggerFactoryDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

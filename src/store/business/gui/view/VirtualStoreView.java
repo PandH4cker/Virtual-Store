@@ -17,7 +17,8 @@ import java.nio.file.Paths;
  *     {@code public interface Application} interface in order to
  *     configure the start of the JavaFX application.
  * </p>
- * <img src="../../../../uml/App.png" />
+ * <img src="../../../../uml/VirtualStoreViewDiagram.jpg" />
+ *
  * @author Dray Raphael
  * @version 1.0.0
  * @since 1.0.0

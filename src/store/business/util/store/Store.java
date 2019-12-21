@@ -13,7 +13,8 @@ import javax.swing.*;
  *     <li>A name</li>
  *     <li>A logo</li>
  * </p>
- * <img src="../../../../uml/Store.png" />
+ * <img src="../../../../uml/StoreDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -27,8 +28,8 @@ public class Store {
 
     /**
      * Initializes the name and logo attributes
-     * @param name String The name of the store
-     * @param logo ImageIcon The logo of the store
+     * @param name The name of the store
+     * @param logo The logo of the store
      * @see ImageIcon
      */
     public Store(final String name, final ImageIcon logo) {
@@ -39,7 +40,7 @@ public class Store {
 
     /**
      * Getter of the logo
-     * @return ImageIcon The logo of the store
+     * @return ImageIcon - The logo of the store
      */
     public ImageIcon getLogo() {
         return this.logo;
@@ -47,7 +48,7 @@ public class Store {
 
     /**
      * Getter of the name
-     * @return String The name of the store
+     * @return String - The name of the store
      */
     public String getName() {
         return this.name;

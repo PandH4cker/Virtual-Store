@@ -19,7 +19,8 @@ import java.nio.file.Paths;
  *     write a client into a XML file.
  *     It inherits of the {@code public abstract class Writer<E>} class
  * </p>
- * <img src="../../../../uml/ClientWriter.png" />
+ * <img src="../../../../uml/ClientWriterDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -36,7 +37,7 @@ public class ClientWriter extends Writer<Client> {
 
     /**
      * Write the client into the XML file
-     * @param client Client The client to write
+     * @param client The client to write
      */
     public ClientWriter(final Client client) {
         super(CLIENTS_PATH);
@@ -46,7 +47,7 @@ public class ClientWriter extends Writer<Client> {
 
     /**
      * Write elements into the XML File
-     * @param c Client The client to write
+     * @param c The client to write
      * @see Override
      * @see Client
      * @see Element

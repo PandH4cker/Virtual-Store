@@ -7,7 +7,8 @@ import store.business.util.logger.level.Level;
  * <p>
  *     Define a log function to be implemented.
  * </p>
- * <img src="../../../../uml/Logger.png" />
+ * <img src="../../../../uml/LoggerDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0

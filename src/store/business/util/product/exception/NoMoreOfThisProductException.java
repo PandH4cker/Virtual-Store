@@ -11,6 +11,10 @@ package store.business.util.product.exception;
  * @see Throwable
  */
 public class NoMoreOfThisProductException extends Throwable {
+    /**
+     * The constructor of the class
+     * @param message The message describing the error
+     */
     public NoMoreOfThisProductException(final String message) {
         super(message);
     }

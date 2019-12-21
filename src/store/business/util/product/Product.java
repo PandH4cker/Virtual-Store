@@ -22,7 +22,8 @@ import java.util.List;
  *     <li>A hash code</li>
  *     It inherits of the Comparable<E> class, it can be sorted by price
  * </p>
- * <img src="../../../../uml/Product.png" />
+ * <img src="../../../../uml/ProductDiagram.jpg" />
+ *
  * @author Raphael Dray
  * @version 1.0.0
  * @since 1.0.0
@@ -66,7 +67,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
     /**
      * Compute hash code
-     * @return int The hash code of this product
+     * @return int - The hash code of this product
      */
     private int computeHashCode() {
         int result = this.productCategory.hashCode();
@@ -81,8 +82,8 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
     /**
      * Overriding the equals method of the Object class
      * Assert if two products are equals
-     * @param other Object The other object to compare to
-     * @return boolean True|False
+     * @param other The other object to compare to
+     * @return boolean - True|False
      * @see Object
      * @see Override
      */
@@ -98,8 +99,8 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
     /**
      * Overriding compareTo method of the Comparable class
      * Compare by price
-     * @param other Product The other product to compare to
-     * @return int (-1, 0, 1) --> (Inferior, Equal, Superior)
+     * @param other The other product to compare to
+     * @return int - (-1, 0, 1) --> (Inferior, Equal, Superior)
      * @see Override
      */
     @Override
@@ -109,7 +110,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
     /**
      * Getter of the name
-     * @return String The name of the product
+     * @return String - The name of the product
      */
     public String getName() {
         return this.name;
@@ -117,7 +118,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
     /**
      * Getter of the image path
-     * @return String The image path of the product
+     * @return String - The image path of the product
      */
     public String getImagePath() {
         return this.imagePath;
@@ -125,7 +126,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
     /**
      * Getter of the UID
-     * @return long The UID of the product
+     * @return long - The UID of the product
      */
     public long getUniqueID() {
         return this.uniqueID;
@@ -133,7 +134,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
     /**
      * Getter of the price
-     * @return int The price of the product
+     * @return int - The price of the product
      */
     public int getPrice() {
         return this.price;
@@ -141,7 +142,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
     /**
      * Getter of the number left
-     * @return int The number left in the stock of the product
+     * @return int - The number left in the stock of the product
      */
     public int getNumberLeft() {
         return this.numberLeft;
@@ -149,7 +150,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
     /**
      * Overriding hashCode method of the Object class
-     * @return int The hash code of the product
+     * @return int - The hash code of the product
      * @see Override
      */
     @Override
@@ -159,7 +160,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
     /**
      * Getter of the category
-     * @return ProductCategory The category of the product
+     * @return ProductCategory - The category of the product
      * @see ProductCategory
      */
     public ProductCategory getProductCategory() {
@@ -179,6 +180,10 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
         else throw new NoMoreOfThisProductException("No More Of This Product [" + this + "]");
     }
 
+    /**
+     * {@inheritDoc}
+     * @throws MalformedProductParameterException
+     */
     @Override
     public void validate() throws MalformedProductParameterException {
         List<String> errors = new ArrayList<>();
@@ -283,7 +288,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
         /**
          * Initialize the category name of the product
-         * @param categoryName String The category name of the product
+         * @param categoryName The category name of the product
          */
         ProductCategory(final String categoryName) {
             this.categoryName = categoryName;
@@ -291,7 +296,7 @@ public abstract class Product implements Comparable<Product>, Model<MalformedPro
 
         /**
          * Overriding toString method of the Object class
-         * @return String The category name
+         * @return String - The category name
          * @see Override
          */
         @Override

@@ -10,13 +10,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import store.business.gui.view.NewClientView;
 import store.business.util.client.Client;
-import store.business.util.client.exception.MalformedClientParameterException;
 import store.business.util.logger.level.Level;
 import store.business.util.logger.Logger;
 import store.business.util.logger.LoggerFactory;
 import store.business.util.parser.ClientParser;
 import store.business.util.parser.ProductParser;
 import store.business.util.product.*;
+import store.business.util.product.exception.MalformedProductParameterException;
 import store.business.util.product.exception.NoMoreOfThisProductException;
 import store.business.util.transaction.Transaction;
 import store.business.util.transaction.exception.MalformedTransactionParameterException;
@@ -37,7 +37,7 @@ import java.util.ResourceBundle;
  *     setup our {@code ComboBox<?>}.
  *     It handle Button, Text Area and Text Input mouse events / context menu events
  * </p>
- * <img src="../../../../uml/VirtualStoreController.png" />
+ * <img src="../../../../uml/VirtualStoreControllerDiagram.jpg" />
  *
  * @author Dray Raphael
  * @version 1.0.0
@@ -211,6 +211,8 @@ public class VirtualStoreController implements Initializable {
      * @see FileInputStream
      * @see Paths
      * @exception FileNotFoundException File not found
+     * @exception MalformedProductParameterException
+     * @see MalformedProductParameterException
      * @see FileNotFoundException
      * @see Label
      */
@@ -226,7 +228,11 @@ public class VirtualStoreController implements Initializable {
                         product = p;
                         break;
                     }
-                if(product == null) throw new RuntimeException("Unknown product");
+                if(product == null) try {
+                    throw new MalformedProductParameterException("Unknown product");
+                } catch (MalformedProductParameterException e) {
+                    this.logger.log(e.getMessage(), Level.ERROR);
+                }
                 else {
                     this.product = product;
                     if(this.currentProductDescription.getText().trim().length() != 0)
@@ -257,8 +263,6 @@ public class VirtualStoreController implements Initializable {
      * @see TextField
      * @see Client
      * @see ClientParser
-     * @exception RuntimeException Unknown Client
-     * @see RuntimeException
      * @see TextArea
      * @see Label
      * @see NewClientView
@@ -314,7 +318,9 @@ public class VirtualStoreController implements Initializable {
      * @see Client
      * @see Date
      * @exception NoMoreOfThisProductException No More Of This Product
+     * @exception MalformedTransactionParameterException The Transaction is malformed
      * @see NoMoreOfThisProductException
+     * @see MalformedTransactionParameterException
      */
     @FXML
     public void handleBuyButton(MouseEvent event) {
