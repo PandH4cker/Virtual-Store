@@ -9,6 +9,8 @@ public class TestRunner {
         Result result = JUnitCore.runClasses(VirtualStoreTestSuite.class);
         for(Failure f : result.getFailures())
             System.out.println(f.toString());
-        System.out.println(result.wasSuccessful());
+
+        if(result.wasSuccessful())
+            System.out.println("The tests were successful and terminated in " + result.getRunTime() + " millisecondes");
     }
 }
