@@ -1,6 +1,5 @@
 .idea/
 *.iml
-lib/
 out/
 files/log.txt
 bin/
